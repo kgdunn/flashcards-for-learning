@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block header %}
+{% endblock %}
+
+{% block topright %}
+<a href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">Stop the quiz</a>
+{% endblock %}
+
+
+{% block content %}
+<div class="vocab-test">
+    <div class="rsm-header-left" style="max-width: 100px;">
+        {% if quiz.currentitem > 0 %}
+         <input type="button" value="Prior" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=1 %}';" />  {% if quiz.words_asked < 2 %}(or swipe right){% endif %}
+        {% endif %}
+    </div>
+
+    <div class="rsm-header-right" style="max-width: 100px;">
+        <input type="button" value="Next" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=2 %}';" /> {% if quiz.words_asked < 2 %}(swipe to left){% endif %}
+    </div>
+
+    <div id="vocab-question">
+    {% if show_answer %}
+        <span id="answer-text"><i>Answer</i>:</span> {{word_item.part2}}
+    {% else %}
+        {{word_item.part1}}
+    {% endif %}
+    </div>
+</div>
+<div style="clear: both;"></div>
+<div class="vocab-test-row2">
+    <div class="rsm-header-left">
+        <span style="font-style: italic; color: darkgreen;">
+        {% if quiz.n_words_asked == 1 %}If you can make a sentence with the word, or if you know what it means, then click Next.
+        If you don't know the word, click on "Show answer".{% endif %}
+        </span>
+    </div>
+    <div class="rsm-header-right" style="max-width: 100px;">
+    {{quiz.the_score}}
+    </div>
+    <div id="vocab-answer-resume">
+        {% if show_answer %}
+            <input type="button" value="Resume quiz" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=5 %}';" />
+        {% else %}
+            <input type="button" value="Show answer" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=3 %}';" /> (deducts a point)
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block topleft %}
+<style>
+    .rsm-sign-in-button{
+        float:none;
+        overflow: auto;
+    }
+
+    .rsm-content{
+        padding-top: 0;
+    }
+    .rsm-blue{
+        background-color: blue;
+    }
+    .ui-btn-icon-left:after {
+        background-color: {% if enabled %}blue{% else %}red{% endif %};
+    }
+</style>
+<div data-role="rsm-header">
+    {% if not hide_sign_in %}
+    <div class="rsm-sign-in-button">
+        <div data-role="main" class="ui-content">
+            <a href="#sign-in-popup" id="sign-in-popup-link" data-rel="popup" class="ui-btn ui-icon ui-btn-inline ui-corner-all {% if enabled %}ui-icon-check blue{% else %}ui-icon-gear red{% endif %} ui-btn-icon-left" name="sign-in-popup-link">
+            {% if enabled %}{{ person.display_name }}{% else %}Sign-in{% endif %}
+            </a>
+            <div data-role="popup" id="sign-in-popup" class="ui-content" data-transition="pop" style="min-width:250px;">
+                <form method="post" id="sign-in-popup-form" action="{% url 'popup_sign_in' %}" name="sign-in-popup-form">
+                    {% csrf_token %}
+                    <div>
+                        <h3>Sign in with your email address</h3>
+                        <em>New user</em>? We send a confirmation email.<br>
+                        <em>Returning user</em>? We send a unique link, by email.
+                        <label for="usrnm" class="ui-hidden-accessible">Email address:</label>
+                        <input type="email" name="emailaddress" id="usrnm" placeholder="Your email address">
+                        <span id="popup-message-back"></span>
+                        <br>
+                        <input id="popup-submit-button" type="submit" data-rel="back" data-inline="true" value="Email me a code to get started!">
+                        <span id="popup-OK-span"><input id="popup-OK-button" type="button" data-inline="true" value="OK"></span>
+                        <br>
+                        <em>Note</em>: we do not use passwords on this website.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>{#rsm-header#}
+{% endblock %}
+
+{% block topright %}
+{% if enabled %}<a href="{% url 'quiz_HTML_base' %}">Start your personal quiz</a>{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div id="vocab-extra-info">{{extra_info}}</div>
+<form action="{% url 'add_word_HTML' %}" method="post" data-ajax="false">
+    {% csrf_token %}
+
+        <div data-role="fieldcontain">
+            <label for="vocab-part1">Word you want to recall/learn:</label>
+            <input type="text"
+                name="part1"
+                data-clear-btn="true"
+                data-inline="true"
+                placeholder="Enter a Dutch new word or a phrase"
+                value=""
+                {% if not enabled %}disabled{% endif %}
+                autofocus="autofocus"
+                id="vocab-part1">
+        </div>
+        <div data-role="fieldcontain">
+            <label for="vocab-part2">Correspond answer to show (optional):</label>
+            <input type="text"
+                name="part2"
+                data-clear-btn="true"
+                data-inline="true"
+                placeholder='This is the "answer". It will be shown to trigger your memory (if you request it)'
+                value=""
+                {% if not enabled %}disabled{% endif %}
+                id="vocab-part2">
+        </div>
+
+    <div style="max-width: 500px;">
+        <input type="submit"
+               value="Add this word/phrase to the test collection"
+               {% if not enabled %}disabled{% endif %}
+        />
+</form>
+{% if enabled %}You already have {{ words.count }} words in your list.{% endif %}
+{% endblock %}

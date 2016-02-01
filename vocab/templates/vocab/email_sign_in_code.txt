@@ -1,0 +1,13 @@
+Hithere,
+
+Glad to have you back.
+
+To sign into the Woorden-Words Website please follow these steps:
+1. Click on this link: <a href="{{sign_in_URI}}"><tt>{{sign_in_URI}}</tt></a>
+2. Get started with testing your vocabulary.
+
+<b>Remember: we don't use passwords on our website</b>, but we do send an email for you to log in. Once logged in, you will stay logged in (or until you clear your cookies).
+
+Get learning!
+
+Kevin

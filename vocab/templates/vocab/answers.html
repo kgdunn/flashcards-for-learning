@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load flashcard_extras %}
+
+
+{% block header %}
+{% endblock %}
+
+{% block topleft %}<a href="{% url 'add_word_HTML' %}">Add more words</a>{% endblock %}
+{% block topright %}<a href="{% url 'quiz_HTML_base' %}">Start another quiz</a>{% endblock %}
+
+
+{% block content %}
+<div class="vocab-test">
+    <div id="vocab-question">
+        <span id="answer-text"><i>Your score</i>:</span> {{quiz.the_score}}
+    </div>
+    <div style="clear: both;"></div>
+    <div id="vocab-solution">
+        <table class="www-answer-table">
+            <th>Word in the quiz</th>
+            <th>Correct answer</th>
+            <th>Right/wrong?</th>
+            </th>
+            {% for word in answers %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td> {{ word.part1}}</td>
+                    <td> {{ word.part2}}</td>
+                    <td> {% if correct|index:forloop.counter0 == 1 %}Ja{% else %}Nee{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div> {#vocab-test#}
+
+
+{% endblock %}
+
