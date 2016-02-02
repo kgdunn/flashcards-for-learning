@@ -1,0 +1,9 @@
+.hgignore
+db.sqlite3
+flashcards.wpr
+flashcards.wpu
+flashcards/local_settings.py
+logfile.log
+
+syntax: glob
+*.pyc

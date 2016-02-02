@@ -206,9 +206,9 @@ def add_new_word(part1, part2, person):
         part2 = 'bad luck'
 
 
-    obj, created = models.WordItem.objects.get_or_create(part1=part1,
-                                                         part2=part2,
-                                                         person=person)
+    pair, created = models.WordItem.objects.get_or_create(part1=part1,
+                                                          part2=part2,
+                                                          person=person)
 
     worditem = models.QuizWordItem(worditem=pair,
                                    person=person,
