@@ -358,6 +358,8 @@ def quiz_HTML(request, hashvalue=None, action=None):
         pair_id = quiz.quiz_seq[quiz.currentitem]
         pair = models.WordItem.objects.filter(id=pair_id)[0]
         quiz.save()
+        logger.debug('{0} [{1}]: {2}'.format(person.email, 'Prior',
+                                             pair.part1))
         return HttpResponseRedirect(reverse('quiz_HTML',
                                             kwargs={'hashvalue': hashvalue,
                                                     'action': ''}))
@@ -392,6 +394,8 @@ def quiz_HTML(request, hashvalue=None, action=None):
 
         # Parts common to both branches above:
         quiz.save()
+        logger.debug('{0} [{1}]: {2}'.format(person.email, 'Next',
+                                                     pair.part1))
 
         return HttpResponseRedirect(reverse('quiz_HTML',
                                                 kwargs={'hashvalue': hashvalue,
@@ -413,6 +417,9 @@ def quiz_HTML(request, hashvalue=None, action=None):
         worditem.save()
 
         show_answer = True
+        logger.debug('{0} [{1}]: {2}'.format(person.email, 'Solution',
+                                             pair.part1))
+
 
     elif action == '4':
         # Stop the quiz. Show the user their results.
@@ -428,12 +435,13 @@ def quiz_HTML(request, hashvalue=None, action=None):
         context = {'answers': answers,
                    'quiz': quiz,
                    'correct': quiz.correct}
+        logger.debug('{0} [{1}]: {2}'.format(person.email, 'Stop', ''))
         return render(request, 'vocab/answers.html', context)
 
     elif action == '5':
-        pass
+        logger.debug('{0} [{1}]: {2}'.format(person.email, action, pair.part1))
 
-    logger.debug('{0} [{1}]: {2}'.format(person.email, action, pair.part1))
+
     context = {'extra_info': hashvalue,
                'word_item': pair,
                'show_answer': show_answer,
