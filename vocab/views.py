@@ -1,5 +1,6 @@
 # You don't get great landscape layout with large font objects
 # Prevent exactly the prior word from being picked again.
+# Sign in buttom is covered in android
 
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
@@ -225,6 +226,7 @@ def get_next_quiz_pair(quiz, person):
     always preferencially returned
     """
     words = []
+    middle = []
     lowest = models.QuizWordItem.objects.filter(person=person,
                                                 accuracy__lt=0.01)
     words.extend(lowest)
