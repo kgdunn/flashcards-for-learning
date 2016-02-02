@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WordItem, Quiz, Person, Token, QuizWordItem
+from .models import WordItem, Quiz, Person, Token, QuizWordItem, Tag
 
 class WordItemAdmin(admin.ModelAdmin):
     list_display = ('part1', 'part2', 'datetime', 'person')
@@ -22,6 +22,11 @@ class QuizWordItemAdmin(admin.ModelAdmin):
                     'lastquizzed', 'accuracy')
     list_display_links = list_display
 
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('short_name', 'slug', 'description', )
+    list_display_links = list_display
+
+admin.site.register(Tag, TagAdmin)
 admin.site.register(QuizWordItem, QuizWordItemAdmin)
 admin.site.register(Token, TokenAdmin)
 admin.site.register(Person, PersonAdmin)

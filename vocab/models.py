@@ -2,8 +2,22 @@ from __future__ import unicode_literals
 import json
 
 from django.db import models
+from django.template.defaultfilters import slugify
 
 TOKEN_LENGTH = 8
+
+class Tag(models.Model):
+    """ Tags for ``WordItems``. """
+    short_name = models.CharField(max_length=50)
+    slug = models.SlugField(editable=False, unique=True)
+    description = models.CharField(max_length=150)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.short_name)
+        super(Tag, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.short_name
 
 class Person(models.Model):
     """ Defines a person / course participant """
@@ -27,6 +41,7 @@ class WordItem(models.Model):
     part2 = models.TextField(max_length=500)
     datetime = models.DateTimeField(auto_now_add=True)
     person = models.ForeignKey('Person')
+    tags = models.ManyToManyField(to='Tag', blank=True)
 
     def __str__(self):
         return self.part1[0:10] + ' :: ' + self.part2[0:10]

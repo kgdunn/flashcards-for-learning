@@ -1,6 +1,10 @@
 # You don't get great landscape layout with large font objects
-# Prevent exactly the prior word from being picked again.
+# Prevent exactly the 3 prior words from being picked again.
 # Sign in buttom is covered in android
+# No Cookie error message
+# Zien jou lijdt woorden
+# Tags
+# Prior quiz results
 
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
@@ -230,9 +234,9 @@ def get_next_quiz_pair(quiz, person):
     lowest = models.QuizWordItem.objects.filter(person=person,
                                                 accuracy__lt=0.01)
     words.extend(lowest)
-    if len(words) < 5:
+    if len(words) < 10:
         middle = models.QuizWordItem.objects.filter(person=person,
-                                                    accuracy__lt=0.51)
+                                                    accuracy__lt=0.71)
         words.extend(middle)
 
     if len(words) < 5:
@@ -251,7 +255,6 @@ def get_next_quiz_pair(quiz, person):
         words.extend(highest)
 
     # Give the lower accuracy words a higher probability of being picked
-    words.extend(lowest)
     words.extend(lowest)
     words.extend(lowest)
     words.extend(middle)
