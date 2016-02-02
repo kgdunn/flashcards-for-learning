@@ -25,7 +25,7 @@
                 <tr class="{% cycle 'odd' 'even' %}">
                     <td> {{ word.part1}}</td>
                     <td> {{ word.part2}}</td>
-                    <td> {% if correct|index:forloop.counter0 == 1 %}Ja{% else %}Nee{% endif %}</td>
+                    <td> {% if correct|index:forloop.counter0 == 1 %}Right{% else %}Wrong{% endif %}</td>
                 </tr>
             {% endfor %}
         </table>

@@ -214,6 +214,7 @@ def add_new_word(part1, part2, person):
     pair, created = models.WordItem.objects.get_or_create(part1=part1,
                                                           part2=part2,
                                                           person=person)
+    pair.save()
 
     worditem = models.QuizWordItem(worditem=pair,
                                    person=person,
@@ -221,7 +222,7 @@ def add_new_word(part1, part2, person):
                                    counts_right=0)
     worditem.save()
 
-    return created
+    return pair
 
 def get_next_quiz_pair(quiz, person):
     """
