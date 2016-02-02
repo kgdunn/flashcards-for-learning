@@ -3,7 +3,6 @@
 # Sign in buttom is covered in android
 # No Cookie error message
 # Zien jou lijdt woorden
-# Tags
 # Prior quiz results
 
 from django.shortcuts import render, get_object_or_404
@@ -215,58 +214,73 @@ def add_new_word(part1, part2, person):
                                                           part2=part2,
                                                           person=person)
     pair.save()
-    if created:
+    if not(created):
         logger.debug("Word pair already existed: {0}:{1}".format(part1, part2))
-
-    worditem = models.QuizWordItem(worditem=pair,
-                                   person=person,
-                                   counts_wrong=0,
-                                   counts_right=0)
-    worditem.save()
+    else:
+        worditem = models.QuizWordItem(worditem=pair,
+                                       person=person,
+                                       counts_wrong=0,
+                                       counts_right=0)
+        worditem.save()
 
     return pair
 
 def get_next_quiz_pair(quiz, person):
-    """
-    Returns the next word to quiz.
-    Uses a sliding scale to determine which words to return. Weakest words are
-    always preferencially returned
-    """
-    words = []
-    middle = []
-    lowest = models.QuizWordItem.objects.filter(person=person,
-                                                accuracy__lt=0.01)
-    words.extend(lowest)
-    if len(words) < 10:
-        middle = models.QuizWordItem.objects.filter(person=person,
-                                                    accuracy__lt=0.71)
+    """    Returns the next word to quiz. """
+    def select_items(person):
+        """
+        Uses a sliding scale to determine which words to return. Weakest words
+        are always preferencially returned."""
+        words = []
+        middle = []
+        lowest = models.QuizWordItem.objects.filter(person=person,
+                                                    accuracy__lt=0.01)
+        words.extend(lowest)
+        if len(words) < 10:
+            middle = models.QuizWordItem.objects.filter(person=person,
+                                                        accuracy__lt=0.71)
+            words.extend(middle)
+
+        if len(words) < 15:
+            upper = models.QuizWordItem.objects.filter(person=person,
+                                                       accuracy__lt=0.81)
+            words.extend(upper)
+
+        if len(words) < 20:
+            top = models.QuizWordItem.objects.filter(person=person,
+                                                     accuracy__lt=0.91)
+            words.extend(top)
+
+        if len(words) < 25:
+            highest = models.QuizWordItem.objects.filter(person=person,
+                                                         accuracy__lt=1.01)
+            words.extend(highest)
+
+        # Give the lower accuracy words a higher probability of being picked
+        words.extend(lowest)
+        words.extend(lowest)
         words.extend(middle)
+        worditems = [item.worditem for item in words]
+        ids = [item.id for item in worditems]
+        return worditems, ids
 
-    if len(words) < 5:
-        upper = models.QuizWordItem.objects.filter(person=person,
-                                                   accuracy__lt=0.81)
-        words.extend(upper)
+    # Do an intial trial selection:
+    worditems, ids = select_items(person)
 
-    if len(words) < 5:
-        top = models.QuizWordItem.objects.filter(person=person,
-                                                 accuracy__lt=0.91)
-        words.extend(top)
+    # Now, ensure we have not quizzed this word in at least the last 5 words
+    off_limits = quiz.quiz_seq[max(0,quiz.currentitem-4):quiz.currentitem+1]
+    # So remove those id's from consideration
+    for item in off_limits:
+        for k in xrange(ids.count(item)):
+            index = ids.index(item)
+            ids.pop(index)
+            worditems.pop(index)
 
-    if len(words) < 5:
-        highest = models.QuizWordItem.objects.filter(person=person,
-                                                     accuracy__lt=1.01)
-        words.extend(highest)
-
-    # Give the lower accuracy words a higher probability of being picked
-    words.extend(lowest)
-    words.extend(lowest)
-    words.extend(middle)
-    worditems = [item.worditem for item in words]
-
-    if words:
-        return worditems[random.randint(0, len(words)-1)]
-    else:
+    # Now we should have a smaller list of id's to select from
+    if len(worditems) == 0:
         return None
+    else:
+        return worditems[random.randint(0, len(ids)-1)]
 
 def add_word_HTML(request):
     """

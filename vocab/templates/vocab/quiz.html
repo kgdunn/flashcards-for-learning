@@ -11,7 +11,7 @@
 {% block content %}
 <div class="vocab-test">
     <div id="vocab-question">
-        {% if show_answer %}
+        {% if show_answer and word_item.part2 %}
             <span id="answer-text"><i>Answer</i>:</span> {{word_item.part2}}
         {% else %}
             {{word_item.part1}}
@@ -20,13 +20,15 @@
 
     <div style="clear: both;"></div>
     <div class="rsm-header-left" style="max-width: 100px;">
-        {% if quiz.currentitem > 0 %}
-         <input type="button" value="Prior" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=1 %}';" />  {% if quiz.words_asked < 2 %}(or swipe right){% endif %}
+        {% if quiz.currentitem > 0 and not show_answer %}
+         <input type="button" value="Prior" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=1 %}';" />  {% if quiz.words_asked < 2 %}{% endif %}
         {% endif %}
     </div>
 
     <div class="rsm-header-right" style="max-width: 100px;">
-        <input type="button" value="Next" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=2 %}';" /> {% if quiz.words_asked < 2 %}(swipe to left){% endif %}
+        {% if not show_answer %}
+        <input type="button" value="Next" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=2 %}';" /> {% if quiz.words_asked < 2 %}{% endif %}
+        {% endif %}
     </div>
 
 
