@@ -272,7 +272,7 @@ def add_word_HTML(request):
     """
     person = models.Person.objects.filter(id=request.session.get('person_id',
                                                                  None))
-    words = models.WordItem.objects.all()
+    words = models.WordItem.objects.filter(person=person)
     extra_info = ''
     if request.POST and len(person)==1:
         part1 = request.POST.get('part1', None)
