@@ -139,7 +139,7 @@ def popup_sign_in(request):
     # Process the sign-in
     # 1. Check if email address is valid based on a regular expression check.
     try:
-        email = request.POST.get('emailaddress', '').strip()
+        email = request.POST.get('emailaddress', '').strip().lower()
         validate_email(email)
     except ValidationError:
         return HttpResponse("Invalid email address. Try again please.",
