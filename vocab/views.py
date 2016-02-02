@@ -215,6 +215,8 @@ def add_new_word(part1, part2, person):
                                                           part2=part2,
                                                           person=person)
     pair.save()
+    if created:
+        logger.debug("Word pair already existed: {0}:{1}".format(part1, part2))
 
     worditem = models.QuizWordItem(worditem=pair,
                                    person=person,
