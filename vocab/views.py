@@ -214,6 +214,7 @@ def add_new_word(part1, part2, person):
                                    person=person,
                                    counts_wrong=0,
                                    counts_right=0)
+    worditem.save()
 
     return created
 
@@ -223,7 +224,7 @@ def get_next_quiz_pair(quiz, person):
     Uses a sliding scale to determine which words to return. Weakest words are
     always preferencially returned
     """
-    words = []#models.WordItem.objects.all()
+    words = []
     lowest = models.QuizWordItem.objects.filter(person=person,
                                                 accuracy__lt=0.01)
     words.extend(lowest)
