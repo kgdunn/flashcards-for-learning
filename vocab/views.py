@@ -433,6 +433,7 @@ def quiz_HTML(request, hashvalue=None, action=None):
     elif action == '5':
         pass
 
+    logger.debug('{0}: {1}'.format(person.email, pair.part1))
     context = {'extra_info': hashvalue,
                'word_item': pair,
                'show_answer': show_answer,
