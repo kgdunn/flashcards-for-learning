@@ -88,5 +88,5 @@
                {% if not enabled %}disabled{% endif %}
         />
 </form>
-{% if enabled %}You already have {{ words.count }} words in your list.{% endif %}
+{% if enabled %}You already have {{ words.count }} word{{ words.count|pluralize }} in your list.{% endif %}
 {% endblock %}
