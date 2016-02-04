@@ -269,8 +269,14 @@ def get_next_quiz_pair(quiz, person):
     # Do an intial trial selection:
     worditems, ids = select_items(person)
 
-    # Now, ensure we have not quizzed this word in at least the last 5 words
-    off_limits = quiz.quiz_seq[max(0,quiz.currentitem-4):quiz.currentitem+1]
+    # Now, ensure we have not quizzed this word in at least the last "n" words
+    # where "n" is the smaller of 5, or N-2 (where N=total number of words in
+    # this person's vocab list)
+    # This implies a person should have 3 or more words in their list before
+    # they can start any quiz.
+    N = models.WordItem.objects.filter(person=person).count()
+    n = min(5, N-2) - 1
+    off_limits = quiz.quiz_seq[max(0,quiz.currentitem-n):quiz.currentitem+1]
     # So remove those id's from consideration
     for item in off_limits:
         for k in xrange(ids.count(item)):
@@ -405,6 +411,9 @@ def quiz_HTML(request, hashvalue=None, action=None):
             quiz.words_correct_first_time = json.dumps(correct)
             quiz.currentitem = len(quiz_seq) - 1
 
+            answer_seq = pair.answer_seq
+            answer_seq.append(1)
+            pair.answers = json.dumps(answer_seq)
             pair.counts_right += 1
             pair.save()
 
@@ -423,6 +432,11 @@ def quiz_HTML(request, hashvalue=None, action=None):
         correct[quiz.currentitem] = 0
         quiz.words_correct_first_time = json.dumps(correct)
         quiz.save()
+
+        answer_seq = pair.answer_seq
+        answer_seq = answer_seq[0:-1]
+        answer_seq.append(0)
+        pair.answers = json.dumps(answer_seq)
 
         pair.counts_wrong += 1
         pair.counts_right -= 1

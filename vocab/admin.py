@@ -2,7 +2,8 @@ from django.contrib import admin
 from .models import WordItem, Quiz, Person, Token, Tag
 
 class WordItemAdmin(admin.ModelAdmin):
-    list_display = ('part1', 'part2', 'datetime', 'person')
+    list_display = ('part1', 'part2', 'datetime', 'person', 'answers',
+                    'counts_wrong', 'counts_right')
     list_display_links = list_display
 
 class QuizAdmin(admin.ModelAdmin):

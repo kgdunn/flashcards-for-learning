@@ -48,10 +48,25 @@ class WordItem(models.Model):
     # can be negative when checking the answer repeatedly
     counts_right = models.IntegerField(default=0)
 
+    # sequence of right (1) and wrong (0) answers provided for this word
+    answers = models.TextField(default='')
+
     lastquizzed = models.DateTimeField(auto_now=True)
 
     # A number between -1 and 1 that indicates how accurate the user is
     accuracy = models.FloatField(default=0.0)
+
+    def get_answers(self):
+        """ Returns a list (instead of the JSON string) of the quiz
+        items that have been asked.
+        """
+        try:
+            return json.loads(self.answers)
+        except ValueError:
+            return list()
+
+    answer_seq = property(get_answers)
+
 
     def save(self, *args, **kwargs):
         den = (abs(self.counts_right) + self.counts_wrong + 0.0)
