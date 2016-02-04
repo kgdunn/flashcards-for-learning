@@ -42,10 +42,14 @@ class WordItem(models.Model):
     datetime = models.DateTimeField(auto_now_add=True)
     person = models.ForeignKey('Person')
     tags = models.ManyToManyField(to='Tag', blank=True)
-    counts_wrong = models.PositiveIntegerField()
+
+    counts_wrong = models.PositiveIntegerField(default=0)
+
     # can be negative when checking the answer repeatedly
-    counts_right = models.IntegerField()
+    counts_right = models.IntegerField(default=0)
+
     lastquizzed = models.DateTimeField(auto_now=True)
+
     # A number between -1 and 1 that indicates how accurate the user is
     accuracy = models.FloatField(default=0.0)
 
@@ -55,7 +59,7 @@ class WordItem(models.Model):
             self.accuracy = 0.0
         else:
             self.accuracy = self.counts_right/den
-        super(QuizWordItem, self).save(*args, **kwargs)
+        super(WordItem, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.part1[0:10] + ' :: ' + self.part2[0:10]
@@ -63,8 +67,6 @@ class WordItem(models.Model):
 class QuizWordItem(models.Model):
     worditem = models.ForeignKey('WordItem')
     person = models.ForeignKey('Person')
-
-
 
 class Quiz(models.Model):
     # 3 datetime fields to track for the quiz.

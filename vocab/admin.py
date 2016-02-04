@@ -17,17 +17,17 @@ class TokenAdmin(admin.ModelAdmin):
     list_display = ('person', 'was_used', 'time_used')
     list_display_links = list_display
 
-class QuizWordItemAdmin(admin.ModelAdmin):
-    list_display = ('person', 'worditem', 'counts_wrong', 'counts_right',
-                    'lastquizzed', 'accuracy')
-    list_display_links = list_display
+#class QuizWordItemAdmin(admin.ModelAdmin):
+#    list_display = ('person', 'worditem', 'counts_wrong', 'counts_right',
+#                    'lastquizzed', 'accuracy')
+#    list_display_links = list_display
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ('short_name', 'slug', 'description', )
     list_display_links = list_display
 
 admin.site.register(Tag, TagAdmin)
-admin.site.register(QuizWordItem, QuizWordItemAdmin)
+#admin.site.register(QuizWordItem, QuizWordItemAdmin)
 admin.site.register(Token, TokenAdmin)
 admin.site.register(Person, PersonAdmin)
 admin.site.register(WordItem, WordItemAdmin)
