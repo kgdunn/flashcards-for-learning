@@ -224,12 +224,7 @@ def add_new_word(part1, part2, person):
     pair.save()
     if not(created):
         logger.debug("Word pair already existed: {0}:{1}".format(part1, part2))
-    else:
-        worditem = models.QuizWordItem(worditem=pair,
-                                       person=person,
-                                       counts_wrong=0,
-                                       counts_right=0)
-        worditem.save()
+
 
     return pair
 
@@ -241,36 +236,35 @@ def get_next_quiz_pair(quiz, person):
         are always preferencially returned."""
         words = []
         middle = []
-        lowest = models.QuizWordItem.objects.filter(person=person,
-                                                    accuracy__lt=0.01)
+        lowest = models.WordItem.objects.filter(person=person,
+                                                accuracy__lt=0.01)
         words.extend(lowest)
         if len(words) < 10:
-            middle = models.QuizWordItem.objects.filter(person=person,
-                                                        accuracy__lt=0.71)
+            middle = models.WordItem.objects.filter(person=person,
+                                                    accuracy__lt=0.71)
             words.extend(middle)
 
         if len(words) < 15:
-            upper = models.QuizWordItem.objects.filter(person=person,
-                                                       accuracy__lt=0.81)
+            upper = models.WordItem.objects.filter(person=person,
+                                                   accuracy__lt=0.81)
             words.extend(upper)
 
         if len(words) < 20:
-            top = models.QuizWordItem.objects.filter(person=person,
-                                                     accuracy__lt=0.91)
+            top = models.WordItem.objects.filter(person=person,
+                                                 accuracy__lt=0.91)
             words.extend(top)
 
         if len(words) < 25:
-            highest = models.QuizWordItem.objects.filter(person=person,
-                                                         accuracy__lt=1.01)
+            highest = models.WordItem.objects.filter(person=person,
+                                                     accuracy__lt=1.01)
             words.extend(highest)
 
         # Give the lower accuracy words a higher probability of being picked
         words.extend(lowest)
         words.extend(lowest)
         words.extend(middle)
-        worditems = [item.worditem for item in words]
-        ids = [item.id for item in worditems]
-        return worditems, ids
+        ids = [item.id for item in words]
+        return words, ids
 
     # Do an intial trial selection:
     worditems, ids = select_items(person)
@@ -411,10 +405,8 @@ def quiz_HTML(request, hashvalue=None, action=None):
             quiz.words_correct_first_time = json.dumps(correct)
             quiz.currentitem = len(quiz_seq) - 1
 
-            worditem = models.QuizWordItem.objects.filter(worditem=pair,
-                                                          person=person)[0]
-            worditem.counts_right += 1
-            worditem.save()
+            pair.counts_right += 1
+            pair.save()
 
         # Parts common to both branches above:
         quiz.save()
@@ -432,13 +424,9 @@ def quiz_HTML(request, hashvalue=None, action=None):
         quiz.words_correct_first_time = json.dumps(correct)
         quiz.save()
 
-        worditem = models.QuizWordItem.objects.filter(worditem=pair,
-                                                      person=person)[0]
-
-
-        worditem.counts_wrong += 1
-        worditem.counts_right -= 1
-        worditem.save()
+        pair.counts_wrong += 1
+        pair.counts_right -= 1
+        pair.save()
 
         show_answer = True
         logger.debug('{0} [{1}]: {2}'.format(person.email, 'Solution',
@@ -465,11 +453,9 @@ def quiz_HTML(request, hashvalue=None, action=None):
     elif action == '5':
         logger.debug('{0} [{1}]: {2}'.format(person.email, action, pair.part1))
 
-    quizwordhistory = models.QuizWordItem.objects.filter(worditem=pair,
-                                                         person=person)[0]
+
     context = {'extra_info': hashvalue,
-               'word_item': pair,
-               'quizwordhistory': quizwordhistory,
+               'worditem': pair,
                'show_answer': show_answer,
                'quiz': quiz}
     return render(request, 'vocab/quiz.html', context)
