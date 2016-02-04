@@ -64,10 +64,6 @@ class WordItem(models.Model):
     def __str__(self):
         return self.part1[0:10] + ' :: ' + self.part2[0:10]
 
-class QuizWordItem(models.Model):
-    worditem = models.ForeignKey('WordItem')
-    person = models.ForeignKey('Person')
-
 class Quiz(models.Model):
     # 3 datetime fields to track for the quiz.
     when_started = models.DateTimeField(auto_now_add=True)
