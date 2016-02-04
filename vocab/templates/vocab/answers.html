@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load flashcard_extras %}
-
+{% load staticfiles %}
 
 {% block header %}
 {% endblock %}
@@ -25,7 +25,8 @@
                 <tr class="{% cycle 'odd' 'even' %}">
                     <td> {{ word.part1}}</td>
                     <td> {{ word.part2}}</td>
-                    <td> {% if correct|index:forloop.counter0 == 1 %}Right{% else %}Wrong{% endif %}</td>
+                    <td> {% if correct|index:forloop.counter0 == 1 %}<img width="25px" src="{% static "vocab/Crystal_Clear_action_apply.png" %}" alt="Right"/>
+                         {% else %}<img width="25px" src="{% static "vocab/Crystal_Clear_action_button_cancel.png" %}" alt="Wrong"/>{% endif %}</td>
                 </tr>
             {% endfor %}
         </table>

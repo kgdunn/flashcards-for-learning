@@ -1,9 +1,17 @@
 # You don't get great landscape layout with large font objects
-# Prevent exactly the 3 prior words from being picked again.
 # Sign in buttom is covered in android
 # No Cookie error message
 # Zien jou lijdt woorden
 # Prior quiz results
+# Zet 199 woorden in het lijst voor nieuw sign-ups
+# Show sparkline of answer sequence for this quiz
+# Show prior history for this word (number of ticks; or a sparkline)
+# Swiping actions
+# Why does this send an error message? Report at /sign-in/CBTSMAYZ
+# Set the server to DEBUG=OFF
+
+
+
 
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
@@ -457,9 +465,11 @@ def quiz_HTML(request, hashvalue=None, action=None):
     elif action == '5':
         logger.debug('{0} [{1}]: {2}'.format(person.email, action, pair.part1))
 
-
+    quizwordhistory = models.QuizWordItem.objects.filter(worditem=pair,
+                                                         person=person)[0]
     context = {'extra_info': hashvalue,
                'word_item': pair,
+               'quizwordhistory': quizwordhistory,
                'show_answer': show_answer,
                'quiz': quiz}
     return render(request, 'vocab/quiz.html', context)

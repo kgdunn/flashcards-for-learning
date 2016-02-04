@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 from vocab import views
 
 urlpatterns = [
@@ -40,4 +43,4 @@ urlpatterns = [
     url(r'^sign-in/(?P<hashvalue>[-\w]+)/$', views.sign_in_user,
                 name='sign_in_user'),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
