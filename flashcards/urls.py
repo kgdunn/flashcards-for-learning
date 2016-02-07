@@ -40,7 +40,7 @@ urlpatterns = [
             name='validate_user'),
 
         # Example: /sign-in/asd1241a
-    url(r'^sign-in/(?P<hashvalue>[-\w]+)/$', views.sign_in_user,
+    url(r'^sign-in/(?P<hashvalue>[-\w]+)$', views.sign_in_user,
                 name='sign_in_user'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

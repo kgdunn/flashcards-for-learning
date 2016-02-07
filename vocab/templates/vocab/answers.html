@@ -3,6 +3,27 @@
 {% load staticfiles %}
 
 {% block header %}
+<style>
+#www-vocab-solution{
+    display: inline-block;
+    position: relative;
+    font-size: 16px; font-size: 2vw;
+}
+#www-answer-table {
+    text-align: center;
+    padding: 0.5em;
+}
+#www-answer-table th{
+    padding: 0.5em;
+    background-color: #bbb;
+}
+#www-answer-table .odd{
+    background-color: #eee;
+}
+#www-answer-table .even{
+    background-color: #ddd;
+}
+</style>
 {% endblock %}
 
 {% block topleft %}<a href="{% url 'add_word_HTML' %}">Add more words</a>{% endblock %}
@@ -15,8 +36,8 @@
         <span id="answer-text"><i>Your score</i>:</span> {{quiz.the_score}}
     </div>
     <div style="clear: both;"></div>
-    <div id="vocab-solution">
-        <table class="www-answer-table">
+    <div id="www-vocab-solution">
+        <table id="www-answer-table">
             <th>Word in the quiz</th>
             <th>Correct answer</th>
             <th>Right/wrong?</th>

@@ -1,68 +1,76 @@
-{% extends "base.html" %}
+{% extends "basenew.html" %}
 {% load staticfiles %}
 
 {% block header %}
+<style>
+#www-answer-text{
+    font-size: 3vw;
+}
+#www-vocab-question-answer{
+    position: relative;
+    font-size: 16px; font-size: 6vw;
+    text-align: center;
+}
+.www-vertaaling{
+    color: darkgreen;
+}
+</style>
 {% endblock %}
 
+{% block topleft %}
+{% endblock %}
+
+
 {% block topright %}
-<a href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">See your results</a>
+    <a href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">See your results</a>
 {% endblock %}
 
 
 {% block content %}
-
-<div class="vocab-test">
-    <div id="vocab-question">
+    <div id="www-vocab-question-answer">
         {% if show_answer and worditem.part2 %}
-            <span id="answer-text"><i>Answer</i>:</span> {{worditem.part2}}
+            <span id="www-answer-text"><i>Answer</i>:</span> {{worditem.part2|safe}}
         {% else %}
-            {{worditem.part1}}
+            {{worditem.part1|safe}}
         {% endif %}
     </div>
-
-    <div style="clear: both;"></div>
-    <div class="rsm-header-left" style="max-width: 100px;">
-        {% if quiz.currentitem > 0 and not show_answer %}
-         <input type="button" value="Prior" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=1 %}';" />  {% if quiz.words_asked < 2 %}{% endif %}
-        {% endif %}
-    </div>
-
-    <div class="rsm-header-right" style="max-width: 100px;">
-        {% if not show_answer %}
-        <input type="button" value="Next" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=2 %}';" /> {% if quiz.words_asked < 2 %}{% endif %}
-        {% endif %}
-        <span style="font-style: italic; color: darkgreen;">
-        {% if quiz.n_words_asked == 1 %}If you can make a sentence with the word, or if you know what it means, then click Next.{% endif %}
-        </span>
-    </div>
-
-
-</div>
-<div style="clear: both;"></div>
-<div class="vocab-test-row2">
-    <div class="rsm-header-left">
-    </div>
-    <div class="rsm-header-right" style="max-width: 100px;">
-    {% if quiz.n_words_asked > 1 %}{{quiz.the_score}}{% endif %}
-    </div>
-    <div id="vocab-answer-resume" style="max-width: 200px;">
-        {% if show_answer %}
-            <input type="button" value="Resume quiz" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=5 %}';" />
-        {% else %}
-            <input type="button" value="Show answer" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=3 %}';" />
-            {% if quiz.n_words_asked == 1 %}<span style="font-style: italic; color: darkgreen;">If you don't know the word, click on "Show answer".</span>{% endif %}
-
-            (deducts a point)
-        {% endif %}
-    </div>
-</div>
-
-<div class="vocab-test-row3">
-    <div class="rsm-header-left" >
-    History: {{worditem.counts_wrong}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_button_cancel.png" %}" alt="Wrong"/> and
-                 {{worditem.counts_right}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_apply.png" %}" alt="Right"/> (aim for at least 3 correct per quiz)
-    </div>
-</div>
-
 {% endblock %}
 
+{% block mainleft %}
+    {% if quiz.currentitem > 0 and not show_answer %}
+    <div style="max-width: 100px;">
+    <input type="button" value="&larr;" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=1 %}';" />  {% if quiz.words_asked < 2 %}{% endif %}
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block mainright %}
+    {% if not show_answer %}
+    <div style="max-width: 100px;">
+    <input type="button" value="&rarr;" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=2 %}';" /> {% if quiz.words_asked < 2 %}{% endif %}
+    </div>
+    {% endif %}
+    <span style="font-style: italic; color: darkgreen;">
+    {% if quiz.n_words_asked == 1 %}If you can make a sentence with the word, or if you know what it means, then click Next.{% endif %}
+    </span>
+{% endblock %}
+
+{% block footerleft %}
+    History: {{worditem.counts_wrong}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_button_cancel.png" %}" alt="Wrong"/> and
+             {{worditem.counts_right}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_apply.png" %}" alt="Right"/> (aim for ..)
+{% endblock %}
+
+{% block footermiddle %}
+    {% if show_answer %}
+        <input type="button" value="Resume quiz" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=5 %}';" />
+    {% else %}
+        <input type="button" value="Show answer" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=3 %}';" />
+        {% if quiz.n_words_asked == 1 %}<span style="font-style: italic; color: darkgreen;">If you don't know the word, click on "Show answer".</span>{% endif %}
+
+        (deducts a point)
+    {% endif %}
+{% endblock %}
+
+{% block footerright %}
+   {% if quiz.n_words_asked > 1 %}{{quiz.the_score}}{% endif %}
+{% endblock %}

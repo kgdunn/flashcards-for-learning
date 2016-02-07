@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nederlandse woordenschat</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+
+    <style type="text/css">
+/* Reset  */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Sticky footer */
+html, body {
+    height: 100%;
+    width: 100%;
+}
+#page {
+    height: 100%;
+    height: auto !important;
+    min-height: 100%;
+}
+#sticky-footer-wrap {
+    overflow: auto;
+    padding-bottom: 125px;
+}
+.site-main {
+    overflow: hidden;
+    height: 100%;
+}
+.site-footer {
+    position: relative;
+    height: 125px;
+    margin-top: -125px;
+    clear: both;
+}
+
+/* Header  */
+.site-header {
+    height: 50px;
+}
+.www-header-left{
+	float: left;
+	left: +1%;
+	width: 60%;
+
+}
+.www-header-right{
+	width: 40%;
+	float: right;
+	left: -1%;
+	text-align: right;
+}
+
+/* 3 columns */
+#primary {
+    float: left;
+    width: 70%;
+    margin-left: 15%;
+}
+#secondary {
+    float: left;
+    width: 15%;
+    margin-left:-85%;
+}
+#tertiary{
+    float: left;
+    width: 15%;
+}
+
+
+/* Colours */
+.site-main {
+    background: #FFF;
+}
+.site-header {
+    background: #FFF;
+}
+#primary {
+    background-color: #FFF;
+}
+#secondary {
+    background-color: #FFF;
+}
+#tertiary{
+    background-color: #FFF;
+}
+.site-footer {
+    background: #FFF;
+}
+
+/* HTML elements */
+img{ vertical-align: middle; }
+em { font-style: italic; }
+
+/* Specified area styles*/
+.site-header{
+	border-bottom: 1px solid #aaa;
+	margin-top: 0em;
+	float: center;
+}
+.site-header h1 a {
+	color: black;
+	text-decoration: none;
+	text-align: center;
+	font: 24px/1.0 'Inconsolata','Lucida Grande','Lucida Sans Unicode','Geneva','Verdana',sans-serif;
+	font-weight: bold;
+}
+.site-header a:hover{
+	text-decoration: underline;
+}
+#primary{
+	top:40%;
+    -ms-transform: translateX(-0%) translateY(40%);
+    -webkit-transform: translate(-0%,40%);
+    transform: translate(-0%,40%);
+}
+#secondary{
+	position: relative;
+	top:40%;
+    -ms-transform: translateX(-0%) translateY(40%);
+    -webkit-transform: translate(-0%,40%);
+    transform: translate(-0%,40%);
+}
+#tertiary{
+	text-align: center;
+	top:40%;
+    -ms-transform: translateX(-0%) translateY(40%);
+    -webkit-transform: translate(-0%,40%);
+    transform: translate(-0%,40%);
+}
+</style>
+
+<script type="text/javascript">
+// From http://codepen.io/benpearson/details/fkEGc/
+$(window).load(columnHeight);
+
+// On window resize
+$(window).resize( function () {
+    // Clear all forced column heights before recalculating them after window resize
+    $("#primary").css("height", "");
+    $("#secondary").css("height", "");
+    $("#tertiary").css("height", "");
+    columnHeight();
+});
+
+// Make columns 100% in height
+function columnHeight() {
+    // Column heights should equal the document height minus the header height and footer height
+    var newHeight = $(document).height() - $(".site-header").height() - $(".site-footer").height() + "px";
+    $("#primary").css("height", newHeight);
+    $("#secondary").css("height", newHeight);
+    $("#tertiary").css("height", newHeight);
+}
+// ----------------
+var closePopup = function(event){
+		$("#popup-message-back").text('');
+		$('#popup-submit-button').parents('.ui-btn').show();
+		$('#popup-OK-span').hide();
+		$('#sign-in-popup').popup("close");
+		event.preventDefault();
+		};
+	$(function() {
+	$('#popup-OK-span').hide();
+	$('#sign-in-popup-form').submit(function(event) {
+		var form = $(this);
+
+		$.ajax({
+		  type: form.attr('method'),
+		  url:  form.attr('action'),
+		  cache: false,
+		  data: form.serialize(),
+		  dataType: "html",
+		  beforeSend: function( xhr ) {
+				$("#popup-message-back").text('Please wait ... (can take a few seconds)');
+				$("#popup-message-back").css('color','green');
+				$("#popup-submit-button").prop('disabled', true);
+			}
+		}).done(function(data) {
+			$("#popup-message-back").css('color','blue');
+			$("#popup-message-back").html(data);
+			$('#popup-OK-span').show();
+			$('#popup-submit-button').parents('.ui-btn').hide();
+			$('#popup-OK-span').click(closePopup);
+		}).fail(function(data) {
+			$("#popup-message-back").css('color','red');
+			$("#popup-message-back").text(data.responseText)
+		}).always(function(data){
+			$("#popup-submit-button").prop('disabled', false);
+			$("#popup-message-back").show();
+		});
+		event.preventDefault(); // Prevent the form from submitting via the browser.
+	  });
+	});
+	</script>
+</script>
+{% block header %}{% endblock %}
+</head>
+<body>
+<div id="page">
+	<div id="sticky-footer-wrap">
+		<header class="site-header">
+			<div class="www-header-left site-header">
+				&nbsp;
+				{% block topleft %}{% endblock %}
+			</div>
+			<div class="www-header-right site-header">
+				{% block topright %}{% endblock %}
+			</div>
+		</header>
+		<div class="site-main">
+			<div id="primary">
+				{% block content %}{% endblock %}
+			</div>
+			<div id="secondary">
+				{% block mainleft %}{% endblock %}
+			</div>
+			<div id="tertiary">
+				{% block mainright %}{% endblock %}
+			</div>
+		</div>
+	</div>
+</div>
+<footer class="site-footer">
+	{% block footerleft %}{% endblock %}
+	{% block footermiddle %}{% endblock %}
+	{% block footerright %}{% endblock %}
+</footer>
+</body>
+</html>

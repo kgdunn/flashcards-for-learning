@@ -1,16 +1,15 @@
 # You don't get great landscape layout with large font objects
 # Sign in buttom is covered in android
 # No Cookie error message
-# Zien jou lijdt woorden
+# Zien jou lijst woorden
 # Prior quiz results
-# Zet 199 woorden in het lijst voor nieuw sign-ups
+# Zet 100 woorden in het lijst voor nieuw sign-ups
 # Show sparkline of answer sequence for this quiz
 # Show prior history for this word (number of ticks; or a sparkline)
-# Swiping actions
 # Why does this send an error message? Report at /sign-in/CBTSMAYZ
 # Set the server to DEBUG=OFF
-
-
+# TAGS and starting a quiz with a tag.
+# Swiping actions
 
 
 from django.shortcuts import render, get_object_or_404
@@ -468,6 +467,9 @@ def quiz_HTML(request, hashvalue=None, action=None):
         logger.debug('{0} [{1}]: {2}'.format(person.email, action, pair.part1))
 
 
+    pair = format_quiz_word(pair)
+
+
     context = {'extra_info': hashvalue,
                'worditem': pair,
                'show_answer': show_answer,
@@ -490,3 +492,37 @@ def get_quiz_hash(token_length=TOKEN_LENGTH, no_lowercase=True,
         # It will repeat at this point
     else:
         return hashval
+
+def format_quiz_word(pair):
+    """Reformats the quiz word for HTML display.
+
+    [English text]: is shown on a new line, and in a different style.
+    "..." words are assumed to be an example sentence, so these are italicised.
+    """
+    def italicize_quotes(text):
+        if text.count('"') % 2 != 0:
+            return text
+
+        out = text[0:text.index('"')+1] + '<em>'
+        text = text[text.index('"')+1:]
+        out += text[0:text.index('"')] + '</em>'
+        out += text[text.index('"'):]
+        return out
+
+    if pair is None:
+        return pair
+
+    if '"' in pair.part1:
+        pair.part1 = italicize_quotes(pair.part1)
+
+    if '"' in pair.part2:
+        pair.part2 = italicize_quotes(pair.part2)
+
+    if '[' in pair.part2 and ']' in pair.part2:
+        part2 = pair.part2[0:pair.part2.index('[')]
+        part2 += '<br><span class="www-vertaaling">' +\
+                 pair.part2[pair.part2.index('['):]  +\
+                 '</span>'
+        pair.part2 = part2
+
+    return pair

@@ -49,7 +49,7 @@ class WordItem(models.Model):
     counts_right = models.IntegerField(default=0)
 
     # sequence of right (1) and wrong (0) answers provided for this word
-    answers = models.TextField(default='')
+    answers = models.TextField(default='', blank=True)
 
     lastquizzed = models.DateTimeField(auto_now=True)
 
