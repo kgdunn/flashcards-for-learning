@@ -42,12 +42,12 @@
 </style>
 {% endblock %}
 
-{% block topleft %}<a href="{% url 'add_word_HTML' %}">Add more words</a>{% endblock %}
-{% block topright %}<a href="{% url 'quiz_HTML_base' %}">Start another quiz</a>{% endblock %}
+{% block topleft %}<a data-ajax="false" href="{% url 'add_word_HTML' %}">Add more words</a>{% endblock %}
+{% block topright %}<a data-ajax="false" href="{% url 'quiz_HTML_base' %}">Start another quiz</a>{% endblock %}
 
 {% block content %}
     <div id="www-vocab-question">
-        <span id="www-answer-text"><i>Your score</i>:</span> {{quiz.the_score}}
+        <span id="www-answer-text"><i>Your score</i>:</span> {{quiz.the_score}}<br>
     </div>
     <div id="www-vocab-solution">
         <table id="www-answer-table">

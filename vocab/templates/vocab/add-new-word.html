@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basenew.html" %}
 
 {% block topleft %}
 <style>
@@ -49,11 +49,10 @@
 {% endblock %}
 
 {% block topright %}
-{% if enabled %}<a href="{% url 'quiz_HTML_base' %}">Start your quiz</a>{% endif %}
+{% if enabled %}<a data-ajax="false" href="{% url 'quiz_HTML_base' %}">Start your quiz</a>{% endif %}
 {% endblock %}
 
 {% block content %}
-
 <div id="vocab-extra-info">{{extra_info}}</div>
 <form action="{% url 'add_word_HTML' %}" method="post" data-ajax="false">
     {% csrf_token %}
@@ -89,4 +88,13 @@
         />
 </form>
 {% if enabled %}You already have {{ words.count }} word{{ words.count|pluralize }} in your list.{% endif %}
+{% endblock %}
+
+
+{% block mainleft %}
+
+{% endblock %}
+
+{% block mainright %}
+
 {% endblock %}

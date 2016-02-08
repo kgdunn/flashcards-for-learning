@@ -49,13 +49,31 @@ html, body {
 	float: left;
 	left: +1%;
 	width: 60%;
-
 }
 .www-header-right{
 	width: 40%;
 	float: right;
 	left: -1%;
 	text-align: right;
+}
+
+/* Footer  */
+.www-footer-left{
+	float: left;
+	left: +1%;
+	width: 40%;
+}
+.www-footer-right{
+	width: 40%;
+	float: right;
+	left: -1%;
+	text-align: right;
+}
+.www-footer-middle{
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	width: 20%;
 }
 
 /* 3 columns */
@@ -116,28 +134,29 @@ em { font-style: italic; }
 	text-decoration: underline;
 }
 #primary{
-	top:40%;
-    -ms-transform: translateX(-0%) translateY(40%);
-    -webkit-transform: translate(-0%,40%);
-    transform: translate(-0%,40%);
+	top: 0%;
+    -ms-transform: translateX(-0%) translateY(0%);
+    -webkit-transform: translate(-0%,0%);
+    transform: translate(-0%,0%);
+
 }
 #secondary{
-	position: relative;
-	top:40%;
-    -ms-transform: translateX(-0%) translateY(40%);
-    -webkit-transform: translate(-0%,40%);
-    transform: translate(-0%,40%);
+	top: 50%;
+    -ms-transform: translateX(-0%) translateY(50%);
+    -webkit-transform: translate(-0%,50%);
+    transform: translate(-0%,50%);
 }
 #tertiary{
 	text-align: center;
-	top:40%;
-    -ms-transform: translateX(-0%) translateY(40%);
-    -webkit-transform: translate(-0%,40%);
-    transform: translate(-0%,40%);
+	top: 50%;
+    -ms-transform: translateX(-0%) translateY(50%);
+    -webkit-transform: translate(-0%,50%);
+    transform: translate(-0%,50%);
 }
 </style>
 
 <script type="text/javascript">
+
 // From http://codepen.io/benpearson/details/fkEGc/
 $(window).load(columnHeight);
 
@@ -158,6 +177,8 @@ function columnHeight() {
     $("#secondary").css("height", newHeight);
     $("#tertiary").css("height", newHeight);
 }
+$("#page").trigger("pagecreate");
+
 // ----------------
 var closePopup = function(event){
 		$("#popup-message-back").text('');
@@ -203,9 +224,9 @@ var closePopup = function(event){
 {% block header %}{% endblock %}
 </head>
 <body>
-<div id="page">
+<div id="page" >
 	<div id="sticky-footer-wrap">
-		<header class="site-header">
+		<header class="site-header" >
 			<div class="www-header-left ">
 				{% block topleft %}{% endblock %}
 			</div>
@@ -213,7 +234,7 @@ var closePopup = function(event){
 				{% block topright %}{% endblock %}
 			</div>
 		</header>
-		<div class="site-main">
+		<div class="site-main" class="ui-content">
 			<div id="primary">
 				{% block content %}{% endblock %}
 			</div>
@@ -226,10 +247,18 @@ var closePopup = function(event){
 		</div>
 	</div>
 </div>
-<footer class="site-footer">
-	{% block footerleft %}{% endblock %}
-	{% block footermiddle %}{% endblock %}
-	{% block footerright %}{% endblock %}
+<footer class="site-footer" >
+	<div class="www-footer-left ">
+		{% block footerleft %}{% endblock %}
+	</div>
+	<div class="www-footer-right">
+		{% block footerright %}{% endblock %}
+	</div>
+	<div class="www-footer-middle">
+		{% block footermiddle %}{% endblock %}
+	</div>
+
+
 </footer>
 </body>
 </html>

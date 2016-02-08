@@ -11,6 +11,8 @@
 # TAGS and starting a quiz with a tag.
 # Swiping actions
 
+# Base sign in page looks like shit
+# USe Javascript to recenter the middle, especially for long answers
 
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse

@@ -22,7 +22,7 @@
 
 
 {% block topright %}
-    <a href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">See your results</a>
+    <a data-ajax="false" href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">See your results</a>
 {% endblock %}
 
 
