@@ -23,6 +23,7 @@ from django.core.validators import validate_email
 from django.template.loader import render_to_string
 from django.utils.timezone import utc
 
+import csv
 import random
 import hashlib
 import datetime
@@ -66,6 +67,24 @@ def validate_user(request, hashvalue):
     token = get_object_or_404(models.Token, hash_value=hashvalue)
     token.person.is_validated = True
     token.person.save()
+
+    # OK, let's add some basis words to the person's list
+    if models.WordItem.objects.filter(person=token.person).count() == 0:
+
+
+        tag, _ = models.Tag.objects.get_or_create(short_name='basis-woorden',
+                                                  description='Default words')
+        tag.save()
+
+        with open('basis-lijst.tsv', 'rt') as csvfile:
+            reader = csv.reader(csvfile, delimiter='\t', quotechar='"')
+            for row in reader:
+                worditem = add_new_word(part1=row[0],
+                                        part2=row[1],
+                                        person=token.person)
+                worditem.tags.add(tag)
+                worditem.save()
+
     return sign_in_user(request, hashvalue)
 
 def send_logged_email(subject, message, to_address_list):
