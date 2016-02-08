@@ -16,7 +16,19 @@
 }
 </style>
 
-<script type="text/javascript">function ggetSelection() {var txt = '';if (window.getSelection) {txt = window.getSelection();} else if (document.getSelection) {txt = document.getSelection();} else if (document.selection) {txt = document.selection.createRange().text;}return txt;}$(document).dblclick(function(e) {var t = ggetSelection();if (t) document.location='http://www.woorden.org/woord/'+encodeURIComponent(t);}); </script>
+<script type="text/javascript">
+function ggetSelection() {var txt = '';if (window.getSelection) {txt = window.getSelection();} else if (document.getSelection) {txt = document.getSelection();} else if (document.selection) {txt = document.selection.createRange().text;}return txt;}$(document).dblclick(function(e) {var t = ggetSelection();if (t) document.location='http://www.woorden.org/woord/'+encodeURIComponent(t);});
+
+var hider = function() {
+    if ($(this).width() < 800) {
+        $('.www-advice').hide();}
+    else {
+        $('.www-advice').show();
+    }
+};
+$(window).resize(hider);
+$(document).ready(hider);
+</script>
 {% endblock %}
 
 {% block topleft %}
@@ -43,7 +55,7 @@
     <div style="max-width: 100px;">
     <input type="button" value="&larr;" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=1 %}';" />  {% if quiz.words_asked < 2 %}{% endif %}
     </div>
-    <span style="font-style: italic; color: darkgreen;">
+    <span style="font-style: italic; color: darkgreen;" class="www-advice">
     {% if quiz.n_words_asked == 2 %}You can always go backwards and see prior words.{% endif %}
     </span>
     {% endif %}
@@ -59,27 +71,29 @@
 
     </div>
     {% endif %}
-    <span style="font-style: italic; color: darkgreen;">
+    <span style="font-style: italic; color: darkgreen;" class="www-advice">
     {% if quiz.n_words_asked == 1 %}If you can make a sentence with the word, or if you know what it means, then click this.{% endif %}
     </span>
 {% endblock %}
 
 {% block footerleft %}
-    History: {{worditem.counts_wrong}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_button_cancel.png" %}" alt="Wrong"/> and
-             {{worditem.counts_right}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_apply.png" %}" alt="Right"/> (aim for ..)
+    <span>History:</span><br>
+    <span>{{worditem.counts_wrong}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_button_cancel.png" %}" alt="Wrong"/></span> <br>
+    <span>{{worditem.counts_right}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_apply.png" %}" alt="Right"/> </span>
 {% endblock %}
 
 {% block footermiddle %}
     {% if show_answer %}
-        <input type="button" value="Resume quiz" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=5 %}';" />
+        <input type="button" value="Resume" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=5 %}';" />
     {% else %}
-        <input type="button" value="Show answer" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=3 %}';" />
-        {% if quiz.n_words_asked == 1 %}<span style="font-style: italic; color: darkgreen;">If you don't know the word, click on "Show answer".</span>{% endif %}
-        <br>
-        (deducts a point)
+        <input type="button" value="Answer" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=3 %}';" />
+        {% if quiz.n_words_asked == 1 %}
+        <span style="font-style: italic; color: darkgreen;" class="www-advice">If you don't know the word, click on "Show answer".</span>{% endif %}
+
     {% endif %}
 {% endblock %}
 
 {% block footerright %}
+    This test:<br>
    {% if quiz.n_words_asked > 1 %}{{quiz.the_score}}{% endif %}
 {% endblock %}
