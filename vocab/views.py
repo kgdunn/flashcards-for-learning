@@ -78,7 +78,8 @@ def validate_user(request, hashvalue):
                                                   description='Default words')
         tag.save()
 
-        with open(DJANGO_SETTINGS.BASE_DIR + os.sep + 'basis-lijst.tsv', 'rt') as csvfile:
+        basis = DJANGO_SETTINGS.BASE_DIR + os.sep + 'basis-lijst.tsv'
+        with open(basis, 'rt') as csvfile:
             reader = csv.reader(csvfile, delimiter='\t', quotechar='"')
             for row in reader:
                 worditem = add_new_word(part1=row[0],
@@ -463,7 +464,8 @@ def quiz_HTML(request, hashvalue=None, action=None):
         pair.answers = json.dumps(answer_seq)
 
         pair.counts_wrong += 1
-        pair.counts_right -= 1
+        # This is confusing with the statistics
+        #pair.counts_right -= 1
         pair.save()
 
         show_answer = True
