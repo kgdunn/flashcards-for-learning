@@ -262,22 +262,22 @@ def get_next_quiz_pair(quiz, person):
         lowest = models.WordItem.objects.filter(person=person,
                                                 accuracy__lt=0.01)
         words.extend(lowest)
-        if len(words) < 10:
+        if len(words) < 5:
             middle = models.WordItem.objects.filter(person=person,
-                                                    accuracy__lt=0.71)
+                                                    accuracy__lt=0.51)
             words.extend(middle)
 
-        if len(words) < 15:
+        if len(words) < 10:
             upper = models.WordItem.objects.filter(person=person,
-                                                   accuracy__lt=0.81)
+                                                   accuracy__lt=0.71)
             words.extend(upper)
 
-        if len(words) < 20:
+        if len(words) < 15:
             top = models.WordItem.objects.filter(person=person,
                                                  accuracy__lt=0.91)
             words.extend(top)
 
-        if len(words) < 25:
+        if len(words) < 20:
             highest = models.WordItem.objects.filter(person=person,
                                                      accuracy__lt=1.01)
             words.extend(highest)
