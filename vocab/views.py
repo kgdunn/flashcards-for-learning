@@ -24,6 +24,7 @@ from django.core.validators import validate_email
 from django.template.loader import render_to_string
 from django.utils.timezone import utc
 
+import os
 import csv
 import random
 import hashlib
@@ -77,7 +78,7 @@ def validate_user(request, hashvalue):
                                                   description='Default words')
         tag.save()
 
-        with open('basis-lijst.tsv', 'rt') as csvfile:
+        with open(DJANGO_SETTINGS.BASE_DIR + os.sep + 'basis-lijst.tsv', 'rt') as csvfile:
             reader = csv.reader(csvfile, delimiter='\t', quotechar='"')
             for row in reader:
                 worditem = add_new_word(part1=row[0],
