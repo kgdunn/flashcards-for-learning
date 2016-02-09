@@ -11,8 +11,9 @@
 # TAGS and starting a quiz with a tag.
 # Swiping actions
 
-# Base sign in page looks like shit
-# USe Javascript to recenter the middle, especially for long answers
+
+# Would be nice to use AJAX to get next word loaded, rather than page refreshes
+
 
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse

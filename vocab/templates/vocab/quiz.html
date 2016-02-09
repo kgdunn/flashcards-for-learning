@@ -1,4 +1,4 @@
-{% extends "basenew.html" %}
+{% extends "base.html" %}
 {% load staticfiles %}
 
 {% block header %}
@@ -36,7 +36,7 @@ $(document).ready(hider);
 
 
 {% block topright %}
-    <a data-ajax="false" href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">Your test results</a>
+    <a class="www-wrap-anchor" data-ajax="false" href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">End test</a>
 {% endblock %}
 
 
@@ -89,6 +89,7 @@ $(document).ready(hider);
 {% endblock %}
 
 {% block footerright %}
-    This test:<br>
-   {% if quiz.n_words_asked > 1 %}{{quiz.the_score}}{% endif %}
+    {% if quiz.n_words_asked > 1 %}
+       This test:<br>{{quiz.the_score}}
+    {% endif %}
 {% endblock %}
