@@ -440,7 +440,7 @@ def quiz_HTML(request, hashvalue=None, action=None):
 
         # Parts common to both branches above:
         quiz.save()
-        logger.debug('{0} [{1}]: {2}'.format(person.email, 'Next',
+        logger.debug(u'{0} [{1}]: {2}'.format(person.email, 'Next',
                                                      pair.part1))
 
         return HttpResponseRedirect(reverse('quiz_HTML',
@@ -455,7 +455,9 @@ def quiz_HTML(request, hashvalue=None, action=None):
         quiz.save()
 
         answer_seq = pair.answer_seq
-        answer_seq = answer_seq[0:-1]
+        # You can argue both ways, but for now, every time the answer is
+        # observed it will count against you in the time-series SVG.
+        #answer_seq = answer_seq[0:-1]
         answer_seq.append(0)
         pair.answers = json.dumps(answer_seq)
 
@@ -498,6 +500,7 @@ def quiz_HTML(request, hashvalue=None, action=None):
                'quiz': quiz}
     return render(request, 'vocab/quiz.html', context)
 
+
 def get_quiz_hash(token_length=TOKEN_LENGTH, no_lowercase=True,
                   check_unused=True):
     """Creates random length tokens from unmistakable characters."""
@@ -515,12 +518,34 @@ def get_quiz_hash(token_length=TOKEN_LENGTH, no_lowercase=True,
     else:
         return hashval
 
-def format_quiz_word(pair):
+def format_quiz_word(pair, N=15):
     """Reformats the quiz word for HTML display.
 
     [English text]: is shown on a new line, and in a different style.
     "..." words are assumed to be an example sentence, so these are italicised.
+
+    Also, the vector (a Python list) of 0's and 1's, is added to ``pair`` to
+    give the code required by D3 Javascript to render the SVG history, up to
+    the last ``N`` entries in the list. For example
+        {"y": 0, "color": "red"},
+        {"y": 1, "color": "darkgreen"},
+        {"y": 1, "color": "darkgreen"},
+
     """
+    def format_svg(vector, N=15):
+        out = ''
+        RIGHT = '#32CD32'
+        WRONG = 'red'
+        listseq = vector[-1:-(N+1):-1]
+        listseq.reverse()
+        for number in listseq:
+            if number == 0:
+                out += '{{"y": 0, "color": "{0}"}},'.format(WRONG)
+            else:
+                out += '{{"y": 1, "color": "{0}"}},'.format(RIGHT)
+
+        return out
+
     def italicize_quotes(text):
         if text.count('"') % 2 != 0:
             return text
@@ -546,5 +571,7 @@ def format_quiz_word(pair):
                  pair.part2[pair.part2.index('['):]  +\
                  '</span>'
         pair.part2 = part2
+
+    pair.svgcode = format_svg(pair.answer_seq)
 
     return pair

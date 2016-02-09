@@ -29,7 +29,7 @@ class Person(models.Model):
                         'validated once user has clicked on their email link.'))
 
     def __str__(self):
-        return '{0} [{1}]'.format(self.display_name, self.email)
+        return u'{0} [{1}]'.format(self.display_name, self.email)
 
     def save(self, *args, **kwargs):
         self.display_name  = self.display_name.strip()
@@ -77,7 +77,7 @@ class WordItem(models.Model):
         super(WordItem, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.part1[0:10] + ' :: ' + self.part2[0:10]
+        return u'{0} :: {1}'.format(unicode(self.part1[0:10]), self.part2[0:10])
 
 class Quiz(models.Model):
     # 3 datetime fields to track for the quiz.
