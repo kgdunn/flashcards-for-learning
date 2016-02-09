@@ -26,7 +26,7 @@
 </style>
 
 <script type="text/javascript">
-function ggetSelection() {var txt = '';if (window.getSelection) {txt = window.getSelection();} else if (document.getSelection) {txt = document.getSelection();} else if (document.selection) {txt = document.selection.createRange().text;}return txt;}$(document).dblclick(function(e) {var t = ggetSelection();if (t) document.location='http://www.woorden.org/woord/'+encodeURIComponent(t);});
+function ggetSelection() {var txt = '';if (window.getSelection) {txt = window.getSelection();} else if (document.getSelection) {txt = document.getSelection();} else if (document.selection) {txt = document.selection.createRange().text;}return txt;}$(document).dblclick(function(e) {var t = ggetSelection();if (t) window.open('http://www.woorden.org/woord/'+encodeURIComponent(t), '_blank');});
 
 var hider = function() {
     if ($(this).width() < 800) {
