@@ -45,7 +45,7 @@ def sign_in_user(request, hashvalue):
     token.was_used = True
     token.save()
     request.session['person_id'] = token.person.id
-    logger.info('RETURNING USER: {0}'.format(token.person.id))
+    logger.info('USER: {0}'.format(token.person.email))
 
     return HttpResponseRedirect(reverse('add_word_HTML'))
 
@@ -232,13 +232,14 @@ def add_new_word(part1, part2, person):
         part1 = 'pech'
         part2 = 'bad luck'
 
-
     pair, created = models.WordItem.objects.get_or_create(part1=part1,
                                                           part2=part2,
                                                           person=person)
     pair.save()
     if not(created):
         logger.debug("Word pair already existed: {0}:{1}".format(part1, part2))
+    else:
+        logger.debug("Word added: {0}:{1}".format(part1, part2))
 
 
     return pair
