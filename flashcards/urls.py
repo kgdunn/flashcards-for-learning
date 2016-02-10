@@ -33,7 +33,7 @@ urlpatterns = [
 
     url(r'^quiz/$', views.quiz_HTML, name='quiz_HTML_base'),
 
-    url(r'^sign-in$', views.popup_sign_in, name='popup_sign_in'),
+    #url(r'^sign-in$', views.popup_sign_in, name='popup_sign_in'),
 
     # Example: /validate/asd1241a
     url(r'^validate/(?P<hashvalue>[-\w]+)/$', views.validate_user,
