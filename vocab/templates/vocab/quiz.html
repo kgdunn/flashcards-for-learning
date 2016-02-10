@@ -89,7 +89,10 @@ $(document).ready(centerelement);
 {% endblock %}
 
 {% block footerleft %}
-    <span>History:</span><br>
+    History:<span style="font-style: italic; color: darkgreen;" class="www-advice">&nbsp;(aim for 3 green dots after each other)</span>
+    {% if quiz.n_words_asked <= 2 %}
+
+    {% endif %}<br>
     <span>{{worditem.counts_wrong}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_button_cancel.png" %}" alt="Wrong"/></span> <br>
     <span>{{worditem.counts_right}} <img width="20px" src="{% static "vocab/Crystal_Clear_action_apply.png" %}" alt="Right"/> </span>
 <div id="chart">
@@ -131,8 +134,8 @@ svg.selectAll(".dot")
     .attr("cy", line.y())
     .attr("r", 3.5)
     .style("fill", function(d) { return d.color; });
-
 </script>
+<br>
 </div>
 
 
