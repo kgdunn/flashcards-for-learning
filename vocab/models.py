@@ -16,7 +16,7 @@ class Tag(models.Model):
         self.slug = slugify(self.short_name)
         super(Tag, self).save(*args, **kwargs)
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode(self.short_name)
 
 class Person(models.Model):
@@ -28,7 +28,7 @@ class Person(models.Model):
     is_validated = models.BooleanField(default=False, help_text=('Will be auto-'
                         'validated once user has clicked on their email link.'))
 
-    def __str__(self):
+    def __unicode__(self):
         return unicode('{0} [{1}]'.format(self.display_name, self.email))
 
     def save(self, *args, **kwargs):
@@ -76,8 +76,9 @@ class WordItem(models.Model):
             self.accuracy = self.counts_right/den
         super(WordItem, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return unicode('{0} :: {1}'.format(self.part1[0:10], self.part2[0:10]))
+    def __unicode__(self):
+        return u'{0} :: {1}'.format(unicode(self.part1[0:10]),
+                                           unicode(self.part2[0:10]))
 
 class Quiz(models.Model):
     # 3 datetime fields to track for the quiz.
