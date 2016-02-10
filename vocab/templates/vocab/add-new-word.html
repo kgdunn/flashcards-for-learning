@@ -17,6 +17,9 @@
     .ui-btn-icon-left:after {
         background-color: {% if enabled %}blue{% else %}red{% endif %};
     }
+    #www-rhetorical-question{
+        max-width: 500px;
+    }
     </style>
 {% endblock %}
 
@@ -24,7 +27,7 @@
 {% if enabled %}<a class="www-wrap-anchor" data-ajax="false" href="{% url 'quiz_HTML_base' %}">Start your quiz</a>{% endif %}
 {% endblock %}
 
-{% block mainleft %}{% endblock %}
+{% block mainleft %} &nbsp;{% endblock %}
 
 {% block content %}
 {% if not hide_sign_in %}
@@ -52,11 +55,12 @@
                 </form>
             </div>Why? What does this website do?
             <br>
-            <span id="www-rhetorical-question">We use the psychological fact, called the "<a class="www-wrap-anchor" href = "https://en.wikipedia.org/wiki/Testing_effect" target="_blank">testing effect</a>", that when you are tested, you are more likely to remember things. <em>Like new Dutch words!</em> How often should you test yourself and how many times should you get the answers correct? Well, this website does that all for you, <a class="www-wrap-anchor" target="_blank" href="http://yint.org/flashcards" >based on over 30 years of research</a>.
+            <div id="www-rhetorical-question">We use the psychological fact, called the "<a class="www-wrap-anchor" href = "https://en.wikipedia.org/wiki/Testing_effect" target="_blank">testing effect</a>", that shows when you are tested you are more likely to remember things. <span style="color: red"><em>Like new Dutch words!</em></span>
+            <br><br><p>How often should you test yourself and how many times should you get the answers correct? Well, this website does that all for you, <a class="www-wrap-anchor" target="_blank" href="http://yint.org/flashcards" >based on over 30 years of research</a>.
             <br><br>
             <p>So sign-in. You will get 100 words and phrases automatically added, and you can add your own (see below).
 
-            </span>
+            </div>
         </div>
     </div>
     <br><br><br>
@@ -99,4 +103,4 @@
 {% if enabled %}(You already have {{ words.count }} word{{ words.count|pluralize }} in your list.){% endif %}
 {% endblock %}
 
-{% block mainright %}{% endblock %}
+{% block mainright %}&nbsp;{% endblock %}

@@ -1,19 +1,11 @@
-# You don't get great landscape layout with large font objects
-# Sign in buttom is covered in android
 # No Cookie error message
 # Zien jou lijst woorden
 # Prior quiz results
-# Zet 100 woorden in het lijst voor nieuw sign-ups
-# Show sparkline of answer sequence for this quiz
-# Show prior history for this word (number of ticks; or a sparkline)
 # Why does this send an error message? Report at /sign-in/CBTSMAYZ
 # Set the server to DEBUG=OFF
 # TAGS and starting a quiz with a tag.
 # Swiping actions
-
-
 # Would be nice to use AJAX to get next word loaded, rather than page refreshes
-
 
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse

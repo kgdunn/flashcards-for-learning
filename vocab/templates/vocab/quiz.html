@@ -35,8 +35,15 @@ var hider = function() {
         $('.www-advice').show();
     }
 };
+var centerelement = function(){
+    var free = $(document).height() - $(".site-header").height() - $(".site-footer").height();
+    var elem = $('#www-vocab-question-answer').height();
+    var padding = Math.max(0,free - elem)/2.0 + "px";
+    $('#www-vocab-question-answer').css('padding-top', padding);
+}
 $(window).resize(hider);
 $(document).ready(hider);
+$(document).ready(centerelement);
 </script>
 {% endblock %}
 
@@ -74,10 +81,11 @@ $(document).ready(hider);
 {% block mainright %}
     {% if not show_answer %}
     <input type="button" value="&rarr;" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=2 %}';" />
+        <span style="font-style: italic; color: darkgreen;" class="www-advice">
+        {% if quiz.n_words_asked <= 2 %}Do you know what the word means? Can you make a sentence with it? If yes, then click here.{% endif %}
+        </span>
     {% endif %}
-    <span style="font-style: italic; color: darkgreen;" class="www-advice">
-    {% if quiz.n_words_asked <= 2 %}Do you know what the word means? Can you make a sentence with it? If yes, then click here.{% endif %}
-    </span>
+
 {% endblock %}
 
 {% block footerleft %}
