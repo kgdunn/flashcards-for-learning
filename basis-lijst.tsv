@@ -1,100 +1,131 @@
-toenemen	stijgen
-de proeven	experimenten
-voorschriften	speciale, vaste regels
-glashelder	heel duidelijk [crystal clear]
-de klus (klusje)	klein werk [task, odd job]
-vaag	niet duidelijk [unclear, vague]
-levering	de bezorging
-toepassing van iets	het in de praktijk brengen (to apply something)
-schaars	tekort aan iets [scarcity]
-slagen	succes hebben [succeed]
-bij wijze van	als een soort [so to say; as an example]
-de flop	de mislukking
-de vraag rijzen	de vraag komt op [raise a question]
-animo	het enthousiasme, de zin
-afgestapt	stoppen met, opgeven
-de vereist	dat vraagt veel
-het gebrek	het tekort; iets dat er niet is of waarvan er te weinig is [shortage]
-troebel	niet zuiver en daardoor niet doorzichtig [cloudy]
-uitvoerig	uitgebreid [long-winded]
-rommelig	niet opgeruimd [messy]
-het overschot	surplus [surplus]
-met mijn neus op de feiten gedrukt	met de realiteit geconfronteerd worden
-dreigend	bang maakt voor iets dat gevaarlijk is [menacing; threatening]
-geprezen	krijgt complimenten [praised]
-geborgen	uit een gevaarlijke situatie halen en opruimen
-kronkelen	niet recht zijn [crooked]
-lozen	dumpen, weggooien
-afgevoerd	gebracht; naar een andere plaats brengen [transported]
-nuttige met het aangename verenigen	iets wat zinvol is combineren met iets wat leuk is
-vermijd	voorkomen dat iets (je) gebeurt [avoid]
-zwakke schakel	een onbetrouwbaar deel van het geheel [weak link]
-ontcijferen	oplossen [deciphering]
-het is in aantocht	naderen [it's arriving/coming]
-ik zou een moord doen voor...	ik heb iets heel snel nodig
-duurzaam	wat lang blijft bestaan, met een lange levensduur
-peperduur	zeer duur; kostbaar [very expensive]
-(het) sjabloon	patroon van iets dat al uitgesneden is waardoor je het makkelijk kunt overtekenen [stencil]
-goed onder de knie krijgen	iets steeds beter begrijpt
-verantwoordelijk	aansprakelijk of responsabel [responsible]
-noodzakelijk	wat moet gebeuren [required/necessary]
-afkijken	bij een examen de antwoorden van iemand anders proberen te lezen en te gebruiken
-wat is de uitspraak van: "plastic"	plastic, hetzelfde als in het Engels
-wat is de uitspraak van: "kunststof"	"kunstof" 
-verwerken	in een andere vorm of omgeving brengen ook: iets onaangenaams accepteren [remodel/process into something else] 
-opwerken	naar een betere baan streven en carrière maken
-zet de thermostaat lager	voor de verwarming [set the thermostat lower]
-zwerfafval	afval dat rondslingert op plekken die daar niet voor bestemd zijn
-vergaan	ophouden te bestaan/gecomposteerd [decomposing]
-verwisselbaar	 die of dat vervangen kan worden [interchangeable]
-"van horen zeggen"	[hearsay]
-aanmatigend	[arrogant, presumptuous]
-bijzonder	speciaal, apart, niet gewoon
-ten opzichte van	in vergelijking met
-bedrijf	de zaak, een onderneming die met handel geld verdient
-durven	de moed hebben, niet bang zijn
-klagen	zeggen dat je problemen hebt met iets of iemand
-oplossing	antwoord op een probleem of vraag
-verdrietig	het gevoel hebben dat je moet huilen om nare dingen
-aankomen	arriveren
-aanraden	adviseren
-aflopen	eindigen
-afsluiten	dichtdoen, zorgen dat iets dicht is
-afzeggen	zeggen dat iets niet doorgaat
-deskundige	een expert, iemand die veel over een onderwerp weet
-gewone sterveling	de normale mens
-inmiddels	intussen [in the mean time]
-opblijven	's avonds nog niet gaan slapen
-plenzen	heel hard regenen
-tak	een deel van een boom dat uit de stam of een andere tak groeit
-uitslapen	's morgens lang blijven slapen
-vereisen	beslist nodig hebben, eisen, vergen
-wisselvallig	niet stabiel
-angstaanjagend	iets wat je bang maakt
-bruikbaarheid	hoe goed je iets kan gebruiken
-gespreksstof	de dingen waar je over praat
-in kaart brengen	iets heel duidelijk maken, zodat iedereen het kan zien of begrijpen
-iets in één oogopslag zien	iets snel zien, iets meteen zien
-grof taalgebruik	het gebruik van slechte of onbeleefde woorden
-namelijk	met dit woord geef je een reden of uitleg
-onderscheiden	in categorieën of groepen indelen
-op prijs stellen	waarderen, goed vinden
-opzeggen	zorgen dat iets niet doorgaat, zorgen dat iets stopt
-terecht	juist, met een goede reden
-gracht	een soort smalle, door mensen gemaakte rivier in of om een stad
-kruispunt	de kruising, het punt waar twee lijnen, wegen enz. elkaar snijden
-ramp	een groot ongeluk waarbij veel mensen of dieren betrokken zijn [catastrophe]
-stijgen	toenemen, meer worden
-voordelig	goedkoop
-afmelden voor (zich)	zeggen dat je niet kan komen
-bij iets betrokken zijn	te maken hebben met, veel doen voor
-herinneren (zich)	in gedachten laten terugkomen
-prima	heel goed, geen enkel probleem
-vergelijkbaar	te vergelijken, het lijkt op elkaar
-gevangenis	een speciaal gebouw waar mensen vastzitten omdat ze straf hebben
-bijdragen aan	een aandeel leveren, helpen bij
-nauwelijks	bijna niet [hardly, scarcely]
-talloos	heel veel [countless]
-gemaal	een machine die water uit de polder pompt
-polder	door mensen gemaakt land tussen dijken, waar vroeger water was
-vooroordeel	een mening die je hebt over een persoon of zaak die je niet goed kent
+"van horen zeggen"	[hearsay]	T5
+(het) sjabloon	patroon van iets dat al uitgesneden is waardoor je het makkelijk kunt overtekenen [stencil]	T5
+... heus niet ...	echt niet "Hij zal je heus niet bijten" [certainly not]	
+aankomen	arriveren	
+aanmatigend	[arrogant, presumptuous]	T5
+aanraden	adviseren	
+aanzienlijk	nogal of behoorlijk groot [considerable]	T6
+afgelast	het niet door laten gaan "wegens de regen werd het openluchtconcert afgelast" [cancelled]	T6
+afgestapt	stoppen met, opgeven	T5
+afgevoerd	gebracht; naar een andere plaats brengen [transported]	T5
+afkijken	bij een examen de antwoorden van iemand anders proberen te lezen en te gebruiken	T5
+aflopen	eindigen	
+afmelden voor (zich)	zeggen dat je niet kan komen	
+afsluiten	dichtdoen, zorgen dat iets dicht is	
+afzeggen	zeggen dat iets niet doorgaat	
+angstaanjagend	iets wat je bang maakt	
+animo	het enthousiasme, de zin	T5
+bedrijf	de zaak, een onderneming die met handel geld verdient	T5
+bij iets betrokken zijn	te maken hebben met, veel doen voor	
+bij wijze van	als een soort [so to say; as an example]	T5
+bijdragen aan	een aandeel leveren, helpen bij	
+bijzonder	speciaal, apart, niet gewoon	T5
+blinde darm, of blindedarm	[appendix, attached to the intestine]	T6
+bruikbaarheid	hoe goed je iets kan gebruiken	
+buiten bedrijf	buiten werking [out of order]	T6
+de flank	de zijkant	T6
+de flop	de mislukking	T5
+de klus (klusje)	klein werk [task, odd job]	T5
+de of het? "weekend"	het weekend	T6
+de paraatheid	meteen beschikbaar voor gebruik [preparedness]	T6
+de proeven	experimenten	T5
+de vereist	dat vraagt veel	T5
+de vraag rijzen	de vraag komt op [raise a question]	T5
+de ziekenwagen	de ambulance	
+deskundige	een expert, iemand die veel over een onderwerp weet	
+dienen	moeten, behoren "Men dient zich te houden aan de regels." [should, ought to]	T6
+dreigend	bang maakt voor iets dat gevaarlijk is [menacing; threatening]	T5
+duizelig	als alles om je heen lijkt te draaien [dizzy]	
+durven	de moed hebben, niet bang zijn	T5
+duurzaam	wat lang blijft bestaan, met een lange levensduur	T5
+ervaren (bijv. naamw.)	wijs of kundig geworden door wat je hebt gedaan of meegemaakt; "een ervaren loodgieter" [experienced] 	T6
+garanderen	garantie geven "Ik garandeer je dat hij weer te laat komt"	T6
+geborgen	uit een gevaarlijke situatie halen en opruimen	T5
+gedupeerd	bedrogen; benadeeld [cheated; deceived]	T6
+gemaal	een machine die water uit de polder pompt	
+geprezen	krijgt complimenten [praised]	T5
+gespreksstof	de dingen waar je over praat	
+gevangenis	een speciaal gebouw waar mensen vastzitten omdat ze straf hebben	
+gewone sterveling	de normale mens	
+geëist	heel beslist willen (verleden tijd) [demanded]	T6
+glashelder	heel duidelijk [crystal clear]	T5
+goed onder de knie krijgen	iets steeds beter begrijpt	T5
+gracht	een soort smalle, door mensen gemaakte rivier in of om een stad	
+grof taalgebruik	het gebruik van slechte of onbeleefde woorden	
+herinneren (zich)	in gedachten laten terugkomen	
+het gebrek	het tekort; iets dat er niet is of waarvan er te weinig is [shortage]	T5
+het houdt in ...	betekenen; inhouden [it means ...]	T6
+het is in aantocht	naderen [it's arriving/coming]	T5
+het overschot	surplus [surplus]	T5
+het portier	deur van een auto [car door]	T6
+houde vervand met	te maken hebben met "Het slechte weer houdt verband met een lagedrukgebied"	
+iets in één oogopslag zien	iets snel zien, iets meteen zien	
+ik zou een moord doen voor...	ik heb iets heel snel nodig	T5
+in kaart brengen	iets heel duidelijk maken, zodat iedereen het kan zien of begrijpen	
+inmiddels	intussen [in the mean time]	
+jegens	tegenover "wantrouwen jegens je rivaal voelen"  [towards]	T6
+klagen	zeggen dat je problemen hebt met iets of iemand	T5
+kronkelen	niet recht zijn [crooked]	T5
+kruispunt	de kruising, het punt waar twee lijnen, wegen enz. elkaar snijden	
+levering	de bezorging	T5
+lozen	dumpen, weggooien	T5
+meevallen	beter of gunstiger zijn dan je had verwacht [better than expected]	T6
+met mijn neus op de feiten gedrukt	met de realiteit geconfronteerd worden	T5
+namelijk	met dit woord geef je een reden of uitleg	
+nauwelijks	bijna niet [hardly, scarcely]	
+nauwkeerig	met veel aandacht en heel precies [accurate; attention to detail]	
+noodzakelijk	wat moet gebeuren [required/necessary]	T5
+nuttige met het aangename verenigen	iets wat zinvol is combineren met iets wat leuk is	T5
+omkomen	doodgaan door een ongeluk [die in an accident]	
+onbeschutte	naakt; onverdedigd; ongedekt "onbeschutte huid" [exposed; naked]	T6
+onderscheiden	in categorieën of groepen indelen	
+ontcijferen	oplossen [deciphering]	T5
+op prijs stellen	waarderen, goed vinden	
+oplossing	antwoord op een probleem of vraag	T5
+opwerken	naar een betere baan streven en carrière maken	T5
+opzeggen	zorgen dat iets niet doorgaat, zorgen dat iets stopt	
+peperduur	zeer duur; kostbaar [very expensive]	T5
+plenzen	heel hard regenen	
+polder	door mensen gemaakt land tussen dijken, waar vroeger water was	
+prima	heel goed, geen enkel probleem	
+ramp	een groot ongeluk waarbij veel mensen of dieren betrokken zijn [catastrophe]	
+rommelig	niet opgeruimd [messy]	T5
+schaars	tekort aan iets [scarcity]	T5
+slagen	succes hebben [succeed]	T5
+stijgen	toenemen, meer worden	
+tak	een deel van een boom dat uit de stam of een andere tak groeit	
+talloos	heel veel [countless]	
+ten opzichte van	in vergelijking met	T5
+terecht	juist, met een goede reden	
+toenemen	stijgen	T5
+toenemen	stijgen [rises]	
+toepassing van iets	het in de praktijk brengen (to apply something)	T5
+troebel	niet zuiver en daardoor niet doorzichtig [cloudy]	T5
+uitvoerig	uitgebreid [long-winded]	T5
+vaag	niet duidelijk [unclear, vague]	T5
+vaststelt	bepalen of merken dat iets op een bepaalde manier is "een fout in een tekst vaststellen" [determine]	T6
+verantwoordelijk	aansprakelijk of responsabel [responsible]	T5
+verdrietig	het gevoel hebben dat je moet huilen om nare dingen	T5
+vereisen	beslist nodig hebben, eisen, vergen	
+vergaan	ophouden te bestaan/gecomposteerd [decomposing]	T5
+vergelijkbaar	te vergelijken, het lijkt op elkaar	
+vergen	nodig zijn "De inspanning heeft te veel van haar krachten gevergd." [call for, demand, take]	T6
+verlenen	geven; verschaffen "hulp verlenen aan de oorlogsslachtoffers" [bestow; grant]	T6
+vermijd	voorkomen dat iets (je) gebeurt [avoid]	T5
+verontwaardigd	kwaad, geërgerd [indignant, resentful, in a huff]	
+verwerken	in een andere vorm of omgeving brengen ook: iets onaangenaams accepteren [remodel/process into something else] 	T5
+verwisselbaar	 die of dat vervangen kan worden [interchangeable]	T5
+verzengend	brandend; gloeiend "er was een verzengende hitte in het huis" [scorching heat]	T6
+voor niks gaat de zon op	"alles kost geld en moeite" [there's no such thing as a free lunch]	
+voordelig	goedkoop	
+vooroordeel	een mening die je hebt over een persoon of zaak die je niet goed kent	
+voorrang	et recht om als eerste iets te doen of te krijgen [precedence; priority]	T6
+voorschriften	speciale, vaste regels	T5
+voortdurend	wat blijft duren; zeer vaak of de hele tijd	T6
+wat is de uitspraak van: "kunststof"	"kunstof" 	T5
+wat is de uitspraak van: "plastic"	plastic, hetzelfde als in het Engels	T5
+weigeren	niet willen doen en dat zeggen; "Hij weigerde te betalen." [refuse]	T6
+wisselvallig	niet stabiel	
+zet de thermostaat lager	voor de verwarming [set the thermostat lower]	T5
+zwakke schakel	een onbetrouwbaar deel van het geheel [weak link]	T5
+zwerfafval	afval dat rondslingert op plekken die daar niet voor bestemd zijn	T5
