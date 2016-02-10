@@ -38,7 +38,7 @@ var hider = function() {
 var centerelement = function(){
     var free = $(document).height() - $(".site-header").height() - $(".site-footer").height();
     var elem = $('#www-vocab-question-answer').height();
-    var padding = Math.max(0,free - elem)/2.0 + "px";
+    var padding = Math.max(0,free - elem)/2.5 + "px";
     $('#www-vocab-question-answer').css('padding-top', padding);
 }
 $(window).resize(hider);
