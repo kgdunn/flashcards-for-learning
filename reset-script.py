@@ -15,6 +15,7 @@ os.environ.setdefault(
 django.setup()
 
 from vocab.models import WordItem, Person
+from vocab.views import logger
 
 person = Person.objects.filter(email='kgdunn@gmail.com')[0]
 pairs = WordItem.objects.filter(person=person)
