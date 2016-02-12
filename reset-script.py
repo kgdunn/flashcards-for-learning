@@ -24,4 +24,4 @@ for item in pairs:
     item.counts_right = 0
     item.answers = ''
     item.save()
-    logger.debug('Resetting stats for word: {0}'.format(item.part1))
+    logger.debug(u'Resetted the stats for word: {0}'.format(item.part1))
