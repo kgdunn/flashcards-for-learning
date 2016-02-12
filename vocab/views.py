@@ -232,14 +232,27 @@ def add_new_word(part1, part2, person):
         part1 = 'pech'
         part2 = 'bad luck'
 
-    pair, created = models.WordItem.objects.get_or_create(part1=part1,
-                                                          part2=part2,
-                                                          person=person)
-    pair.save()
-    if not(created):
-        logger.debug("Word pair already existed: {0}:{1}".format(part1, part2))
+    pair = models.WordItem.objects.filter(part1=part1, person=person)
+    if pair:
+        # this preserves any exisiting item that might be there already
+        # but overrides it with a new "part2"
+        pair = pair[0]
+        prior = pair.part2
+        had_to_be_created = False
     else:
-        logger.debug("Word added: {0}:{1}".format(part1, part2))
+        pair = models.WordItem.objects.create(part1=part1, person=person)
+        had_to_be_created = True
+
+    pair.part2 = part2
+    pair.save()
+    if had_to_be_created:
+        logger.debug("New word added [{0}]: {1}:{2}".format(person,
+                                                            part1,
+                                                            part2))
+    else:
+        logger.debug("Word updated [{0}]: Before: {1}|After:{2}".format(person,
+                                                                        prior,
+                                                                        part2))
 
 
     return pair
