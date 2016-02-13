@@ -48,16 +48,17 @@
 
     <div id="www-vocab-solution">
         <table id="www-answer-table">
+            <th>Right/wrong?</th>
             <th>Word in the quiz</th>
             <th>Correct answer</th>
-            <th>Right/wrong?</th>
+
             </th>
             {% for word in answers %}
                 <tr class="{% cycle 'odd' 'even' %}">
-                    <td> {{ word.part1}}</td>
-                    <td> {{ word.part2}}</td>
                     <td> {% if correct|index:forloop.counter0 == 1 %}<img width="25px" src="{% static "vocab/Crystal_Clear_action_apply.png" %}" alt="Right"/>
                          {% else %}<img width="25px" src="{% static "vocab/Crystal_Clear_action_button_cancel.png" %}" alt="Wrong"/>{% endif %}</td>
+                    <td> {{ word.part1}}</td>
+                    <td> {{ word.part2}}</td>
                 </tr>
             {% endfor %}
         </table>
