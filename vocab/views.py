@@ -474,8 +474,8 @@ def quiz_HTML(request, hashvalue=None, action=None):
         pair.save()
 
         show_answer = True
-        logger.debug('{0} [{1}]: {2}'.format(person.email, 'Solution',
-                                             pair.part1))
+        logger.debug(u'{0} [{1}]: {2}'.format(person.email, 'Solution',
+                                             pair.part1.decode('utf-8')))
 
 
     elif action == '4':
