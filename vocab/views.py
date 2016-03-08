@@ -246,14 +246,13 @@ def add_new_word(part1, part2, person):
     pair.part2 = part2
     pair.save()
     if had_to_be_created:
-        logger.debug("New word added [{0}]: {1}:{2}".format(person,
-                                                            part1,
-                                                            part2))
+        logger.debug(u"New word added [{0}]: {1}:{2}".format(person,
+                                                    part1.decode('utf-8'),
+                                                    part2.decode('utf-8')))
     else:
-        logger.debug("Word updated [{0}]: Before: {1}|After:{2}".format(person,
-                                                                        prior,
-                                                                        part2))
-
+        logger.debug(u"Word updated [{0}]: Before: {1}|After:{2}".format(person,
+                                                    prior,
+                                                    part2.decode('utf-8')))
 
     return pair
 
