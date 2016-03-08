@@ -89,7 +89,7 @@ def send_logged_email(subject, message, to_address_list):
     succeeded.
     """
     from django.core.mail import send_mail
-    logger.debug('Email [{0}]: {1}'.format(str(to_address_list), message))
+    logger.debug(u'Email [{0}]: {1}'.format(str(to_address_list), message))
     try:
         out = send_mail(subject=subject,
                   message=message,
@@ -410,7 +410,7 @@ def quiz_HTML(request, hashvalue=None, action=None):
         pair_id = quiz.quiz_seq[quiz.currentitem]
         pair = models.WordItem.objects.filter(id=pair_id)[0]
         quiz.save()
-        logger.debug('{0} [{1}]: {2}'.format(person.email, 'Prior',
+        logger.debug(u'{0} [{1}]: {2}'.format(person.email, 'Prior',
                                              pair.part1))
         return HttpResponseRedirect(reverse('quiz_HTML',
                                             kwargs={'hashvalue': hashvalue,
@@ -475,7 +475,7 @@ def quiz_HTML(request, hashvalue=None, action=None):
 
         show_answer = True
         logger.debug(u'{0} [{1}]: {2}'.format(person.email, 'Solution',
-                                             pair.part1.decode('utf-8')))
+                                             pair.part1))
 
 
     elif action == '4':
@@ -496,7 +496,7 @@ def quiz_HTML(request, hashvalue=None, action=None):
         return render(request, 'vocab/answers.html', context)
 
     elif action == '5':
-        logger.debug('{0} [{1}]: {2}'.format(person.email, action, pair.part1))
+        logger.debug(u'{0} [{1}]: {2}'.format(person.email, action, pair.part1))
 
 
     pair = format_quiz_word(pair)
