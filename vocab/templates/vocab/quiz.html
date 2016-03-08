@@ -143,9 +143,9 @@ svg.selectAll(".dot")
 
 {% block footermiddle %}
     {% if show_answer %}
-        <input type="button" value="Resume" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=5 %}';" />
+        <input type="button" value="Resume test" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=5 %}';" />
     {% else %}
-        <input type="button" value="Answer" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=3 %}';" />
+        <input type="button" value="Show answer" onClick="javascript:location.href = '{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=3 %}';" />
         {% if quiz.n_words_asked <= 2 %}
         <span style="font-style: italic; color: darkgreen;" class="www-advice">If you don't know the word, click here to see the answer.</span>{% endif %}
 
