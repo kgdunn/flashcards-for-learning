@@ -32,8 +32,9 @@
 {% endblock %}
 
 {% block topright %}
-
-<a href="{% url 'quiz_HTML_base' %}" data-ajax="false" class="www-wrap-anchor ui-btn ui-icon ui-btn-inline ui-corner-all " >Test yourself</a>
+    {% if hide_sign_in %}
+        <a href="{% url 'quiz_HTML_base' %}" data-ajax="false" class="www-wrap-anchor ui-btn ui-icon ui-btn-inline ui-corner-all " >Test yourself</a>
+    {% endif %}
 
 {% endblock %}
 
