@@ -36,10 +36,14 @@
 </style>
 {% endblock %}
 
-{% block topleft %}<a class="www-wrap-anchor" data-ajax="false" href="{% url 'add_word_HTML' %}">Add words</a>{% endblock %}
-{% block topright %}<span style="float:right">
-        <a class="www-wrap-anchor" data-ajax="false" href="{% url 'quiz_HTML_base' %}">Another quiz?</a>
-    </span>{% endblock %}
+{% block topleft %}
+    <a href="{% url 'add_word_HTML' %}" data-ajax="false" class="www-wrap-anchor ui-btn ui-icon ui-btn-inline ui-corner-all blue">Add more words</a>
+{% endblock %}
+{% block topright %}
+    <span style="float:right">
+        <a href="{% url 'quiz_HTML_base' %}" data-ajax="false" class="www-wrap-anchor ui-btn ui-icon ui-btn-inline ui-corner-all blue">Another quiz?</a>
+    </span>
+{% endblock %}
 
 {% block content %}
     <div id="www-vocab-question">
@@ -63,5 +67,13 @@
             {% endfor %}
         </table>
     </div>
+
+    <hr>
+    Some hints:
+    <ul>
+    <li> Double click on any word (only during a quiz) and it will automatically define it for you at http://www.woorden.org/
+    <li><a href = "https://en.wikipedia.org/wiki/Testing_effect" target="_blank">testing effect</a>, that shows when you are tested you are more likely to remember things
+    <li><a href = "http://rer.sagepub.com/content/61/2/213.short" target="_blank">feedback effect</a>, that shows your learning is boosted by being provided with feedback at the right time
+    <li><a href = "https://en.wikipedia.org/wiki/Spacing_effect" target="_blank">spacing effect</a>, that means you should have gaps in your learning (don't learn everything in one go).
 {% endblock %}
 

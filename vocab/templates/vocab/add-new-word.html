@@ -19,7 +19,7 @@
         background-color: {% if enabled %}blue{% else %}red{% endif %};
     }
     #www-rhetorical-question{
-        max-width: 500px;
+        max-width: 700px;
         float: left;
         padding-bottom: 2em;
     }
@@ -32,7 +32,9 @@
 {% endblock %}
 
 {% block topright %}
-{% if enabled %}<a class="www-wrap-anchor" data-ajax="false" href="{% url 'quiz_HTML_base' %}">Start your test</a>{% endif %}
+
+<a href="{% url 'quiz_HTML_base' %}" data-ajax="false" class="www-wrap-anchor ui-btn ui-icon ui-btn-inline ui-corner-all " >Test yourself</a>
+
 {% endblock %}
 
 {% block mainleft %} &nbsp;{% endblock %}
@@ -42,8 +44,8 @@
     <div class="www-sign-in-button">
         <div data-role="main" class="ui-content">
             <a href="#sign-in-popup" id="sign-in-popup-link" data-rel="popup" class="ui-btn ui-icon ui-btn-inline ui-corner-all {% if enabled %}ui-icon-check blue{% else %}ui-icon-gear red{% endif %} ui-btn-icon-left" name="sign-in-popup-link">
-            {% if enabled %}{{ person.display_name }}{% else %}Sign-in{% endif %}
-            </a>
+            {% if enabled %}{{ person.display_name }}{% else %}Sign-in to get started{% endif %}
+            </a> Why? What does this website do?
             <div data-role="popup" id="sign-in-popup" class="ui-content" data-transition="pop" style="min-width:250px;">
                 <form method="post" id="sign-in-popup-form" action="{% url 'popup_sign_in' %}" name="sign-in-popup-form">
                     {% csrf_token %}
@@ -64,22 +66,24 @@
             </div>
         </div>
     </div>
-    Why? What does this website do?
-    <br>
 
     <div id="www-rhetorical-question">We use the psychological fact, called the "<a class="www-wrap-anchor" href = "https://en.wikipedia.org/wiki/Testing_effect" target="_blank">testing effect</a>", that shows when you are tested you are more likely to remember things. <span style="color: red"><em>For example, new Dutch words!</em></span>
     <br><br><p>How often should you test yourself and how many times should you get the answers correct? <span id="www-rhetorical-question-image">
         <img height="100px" src="{% static "vocab/aim-for-3-green-dots.jpg" %}" alt="What you should aim for"/>
     </span>
-    Well, this website does that all for you, <a class="www-wrap-anchor" target="_blank" href="http://yint.org/flashcards" >based on over 30 years of research</a>.
+    <p>This website does that all for you, <a class="www-wrap-anchor" target="_blank" href="http://yint.org/flashcards" >based on over 30 years of research</a>. The software automatically selects words you get wrong and tests you more frequently on those.
+
     <br><br>
-    You should test yourself <span style="color: darkgreen">at least once per day</span>, until you get the words correct 3 times in a row.
+    You should test yourself <span style="color: darkgreen; font-style: italic;">at least once per day</span>, until you get the word correct 3 times in a row.
     <br><br>
-    <p>So sign-in. You will get >100 words and phrases automatically added, and you can add your own (see below).
+    <p>So sign-in. You will get >140 Dutch words and phrases to start. You can also add your own.
     </div>
 
 {% endif %}
 
+
+
+{% if hide_sign_in %}
 <div id="vocab-extra-info">{{extra_info}}</div>
 <form action="{% url 'add_word_HTML' %}" method="post" data-ajax="false">
     {% csrf_token %}
@@ -115,17 +119,8 @@
         />
 </form>
 {% if enabled %}(You already have {{ words.count }} word{{ words.count|pluralize }} in your list.){% endif %}
-
-{% if not hide_sign_in %}
-<hr>
-Actually there are 3 learning effects, and we use all three in this website (well, actually two, the 3rd one is up to you):
-<ul>
-<li><a href = "https://en.wikipedia.org/wiki/Testing_effect" target="_blank">testing effect</a>, that shows when you are tested you are more likely to remember things
-<li><a href = "http://rer.sagepub.com/content/61/2/213.short" target="_blank">feedback effect</a>, that shows your learning is boosted by being provided with feedback at the right time
-<li><a href = "https://en.wikipedia.org/wiki/Spacing_effect" target="_blank">spacing effect</a>, that means you should have gaps in your learning (don't learn everything in one go).
-</ul>
-
 {% endif %}
+
 {% endblock %}
 
 {% block mainright %}&nbsp;{% endblock %}

@@ -52,7 +52,9 @@ $(document).ready(centerelement);
 
 
 {% block topright %}
-    <a class="www-wrap-anchor" data-ajax="false" href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}">End test</a>
+
+    <a href="{% url 'quiz_HTML' hashvalue=quiz.quiz_hash action=4 %}" data-ajax="false" class="www-wrap-anchor ui-btn ui-icon ui-btn-inline ui-corner-all">End test</a>
+
 {% endblock %}
 
 
