@@ -47,7 +47,7 @@
         <div data-role="main" class="ui-content">
             <a href="#sign-in-popup" id="sign-in-popup-link" data-rel="popup" class="ui-btn ui-icon ui-btn-inline ui-corner-all {% if enabled %}ui-icon-check blue{% else %}ui-icon-gear red{% endif %} ui-btn-icon-left" name="sign-in-popup-link">
             {% if enabled %}{{ person.display_name }}{% else %}Sign-in to get started{% endif %}
-            </a> Why? What does this website do?
+            </a> <br><br>Why? What does this website do?
             <div data-role="popup" id="sign-in-popup" class="ui-content" data-transition="pop" style="min-width:250px;">
                 <form method="post" id="sign-in-popup-form" action="{% url 'popup_sign_in' %}" name="sign-in-popup-form">
                     {% csrf_token %}

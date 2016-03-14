@@ -54,7 +54,9 @@ class WordItem(models.Model):
     lastquizzed = models.DateTimeField(auto_now=True)
 
     # A number between -1 and 1 that indicates how accurate the user is
-    accuracy = models.FloatField(default=0.0)
+    accuracy = models.FloatField(default=0.35) # Start off with non-zero. 
+    # This way a word that has been wrong 3 or more times prior
+    # will come to fore.
 
     def get_answers(self):
         """ Returns a list (instead of the JSON string) of the quiz
